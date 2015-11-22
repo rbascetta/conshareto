@@ -44,7 +44,6 @@ app.use(session({
 // mount passport
 app.use(passport.initialize());
 app.use(passport.session());
-require('./config/passport')(passport); // configure passport
 
 
 // write css in scss files
