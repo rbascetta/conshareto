@@ -24,4 +24,5 @@ module.exports = function(app, passport) {
     req.logout(); res.redirect('/');
   });
 
+  router.get('/users', userController.all);
 }
