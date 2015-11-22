@@ -1,5 +1,5 @@
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var User = require('../models/user');var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var User = require('../models/user');
 
 module.exports = function(passport) {
   passport.use(new GoogleStrategy({
@@ -38,5 +38,4 @@ module.exports = function(passport) {
       done(err, user);
     });
   });
-
-};
+}

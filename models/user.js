@@ -15,6 +15,7 @@ var userSchema = new mongoose.Schema({
   email: String,
   myEvents: [myEventsSchema],
   googleId: String,
+  profileImageUrl: String,
   created: { type: Date, default: Date.now }
 });
 
