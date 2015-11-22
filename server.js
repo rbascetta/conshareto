@@ -7,19 +7,20 @@ var debug        = require('debug')('app:http');
 var session      = require('express-session'); // for login sessions
 var passport     = require('passport'); // Easy API Authorization
 var mongoose     = require('./config/database');
-var routes       = require('./routes/index')(app, passport);
+//var routes       = require('./routes/index')(app, passport);
 var users        = require('./routes/users');
 var app          = express(); // assign "app" to express functions.
 
 // secure keys
 require('dotenv').load();
 
+// Create local variables for use thoughout the application.
+app.locals.title = app.get('title');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
-// Create local variables for use thoughout the application.
-app.locals.title = app.get('title');
+require('ejs').delimiter = '%';
 
 
 // middleware!
@@ -33,13 +34,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes); // define dynamic routes
 app.use('/users', users);
 
-// login session
+
 app.use(session({
-  secret: 'WDIRocks!',
+  secret: 'Tony and the Ultras are Ultra!',
   resave: false,
   saveUninitialized: true
 }));
-
 
 // mount passport
 app.use(passport.initialize());
@@ -96,6 +96,10 @@ function debugReq(req, res, next) {
       error: {}
     });
   });
+
+
+require('./config/passport')(passport);
+require('./routes/index')(app, passport);
 
 
 module.exports = app;
