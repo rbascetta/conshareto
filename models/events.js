@@ -19,7 +19,7 @@ var artistSchema = new mongoose.Schema({
 var eventSchema = new mongoose.Schema({
   artists: [artistSchema],
   date: Date,
-  venues: [venueSchema],
+  venue: [venueSchema],
   ticketUrl: String
 });
 
