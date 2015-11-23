@@ -11,7 +11,7 @@ module.exports = {
 
   attendEvent: function(req, res) {
     User.findById(req.user.id, function(err, user) {
-      user.myEvents.push({req.body.event});
+      user.myEvents.push({eventInfo: req.body.event, attending: true, following: false});
       user.save(function(err) {
         res.send(user);
       });
@@ -20,7 +20,7 @@ module.exports = {
 
   followEvent: function(req, res) {
     User.findById(req.user.id, function(err, user) {
-      user.myEvents.push({req.body.event});
+      user.myEvents.push({eventInfo: req.body.event, attending: false, follow: true});
       user.save(function(err) {
         res.send(user);
       });
