@@ -23,4 +23,4 @@ var eventSchema = new mongoose.Schema({
   ticketUrl: String
 });
 
-module.exports = mongoose.model('Event', eventSchema);
+module.exports =  eventSchema;
