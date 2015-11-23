@@ -1,11 +1,11 @@
-var User = require('../models/user');
+var Event = require('../models/event');
 
 module.exports = {
 
   all: function(req, res) {
-    User.find({}, function(err, users) {
+    Event.find({}, function(err, events) {
       if (err) return res.status(err.statusCode || 500).json(err);
-      res.json(users);
+      res.json(events);
     });
   },
 

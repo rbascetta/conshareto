@@ -7,7 +7,7 @@ var debug        = require('debug')('app:http');
 var session      = require('express-session'); // for login sessions
 var passport     = require('passport'); // Easy API Authorization
 var mongoose     = require('./config/database');
-//var routes       = require('./routes/index')(app, passport);
+// var routes       = require('./routes/index')(app, passport);
 var users        = require('./routes/users');
 var app          = express(); // assign "app" to express functions.
 
@@ -31,8 +31,8 @@ app.use(cookieParser()); // parse cookies
 app.use(express.static(path.join(__dirname, 'public')));
 
 // routes
-app.use('/', routes); // define dynamic routes
-app.use('/users', users);
+// app.use('/', routes); // define dynamic routes
+// app.use('/users', users);
 
 
 app.use(session({
@@ -55,11 +55,11 @@ app.use(require('node-sass-middleware')({
 }));
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+// app.use(function(req, res, next) {
+//   var err = new Error('Not Found');
+//   err.status = 404;
+//   next(err);
+// });
 
 
 // Useful for debugging the state of requests.
