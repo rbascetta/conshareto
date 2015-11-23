@@ -13,12 +13,12 @@ module.exports = function(passport) {
         if (user) {
             return done(null, user);
         } else {
-          // we have a new student via OAuth!
+          // we have a new user via OAuth!
           var newUser = new User({
             firstName: profile.name.givenName,
             lastName: profile.name.familyName,
             email: profile.emails[0].value,
-            profileImageUrl: profile.image.url,
+            profileImageUrl: profile.picture,
             googleId: profile.id
           });
           newUser.save(function(err) {
