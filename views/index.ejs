@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+  <head><% include partials/template/head.ejs %></head>
   <body>
-    <h1><%= title %></h1>
+    <% include partials/template/header.ejs %>
+
+    <section class="layout">
+      <h1><%= title %></h1>
       <% if (user) { %>
       <h4> Welcome, <%= user.firstName %> </h4><a href="/logout">Logout</a>
       <% } else { %>
       <a href="/auth/google">Login with Google</a>
       <% } %>
+    </section><!-- layout -->
+
+    <% include partials/template/footer.ejs %>
+    <% include partials/template/jsdefaults.ejs %>
   </body>
 </html>

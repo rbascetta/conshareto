@@ -1,3 +1,6 @@
+@import url("http://fonts.googleapis.com/css?family=Bree+Serif|Merriweather:400,300,700,900");
+@import url("http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css");
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -6,3 +9,13 @@ body {
 a {
   color: #00B7FF;
 }
+
+header .hero {
+  width: 100%;
+}
+
+header .hero .branding {
+   position: absolute;
+   top: 0;
+   right: 100px;
+ }
