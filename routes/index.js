@@ -8,7 +8,7 @@ var eventController = require('../controllers/events');
 
 module.exports = function(app, passport) {
   app.get('/', function(req, res, next) {
-    res.render('index', { title: "conShareto", user: req.user });
+    res.render('index', { title: "conshareto", user: req.user });
   });
 
   app.get('/auth/google', passport.authenticate(
