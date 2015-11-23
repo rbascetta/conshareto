@@ -40,6 +40,7 @@ Conshareto is an app that is simple, straight to the point, and user friendly. S
 - CSS3
 - OAuth/Passport
 - APIs
+- Github
 - Heroku
 
 
