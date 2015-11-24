@@ -33,19 +33,19 @@ module.exports = function(app, passport) {
     console.log(req.body);
 
     // assign HTTP request variables
-    var baseUri        = "http://api.jambase.com/events";
-    var jamKey         = "&api_key=" + process.env.JAMBASE_KEY;
-    var zip            = encodeURIcomponent(req.body.distance.zip);
-    var zipParam       = "?zipCode=" + zip;
-    var radius         = encodeURIcomponent(req.body.distance.radius);
-    var radiusParam    = "&radius=" + radius;
-    var distanceParams = zipParam + radiusParam;
-    var startParam     = "&startDate=" + currentDate;
-    var endParam       = "&endDate=" + endDate;
-    var dateParams     = startParam + endParam;
+    var baseUri     = "http://api.jambase.com/events";
+    var jamKey      = "&api_key=" + process.env.JAMBASE_KEY;
+    var zip         = req.body.zip? encodeURIComponent(req.body.zip) : "90017";
+    var zipParam    = "?zipCode=" + zip;
+    var radius      = req.body.radius? encodeURIComponent(req.body.radius) : "10";
+    var radiusParam = "&radius=" + radius;
+    var distParams  = zipParam + radiusParam;
+    var startParam  = "&startDate=" + currentDate;
+    var endParam    = "&endDate=" + endDate;
+    var dateParams  = startParam + endParam;
 
     // build full URI for http request to Jambase API
-    uri = baseUri + distanceParams + dateParams + jamKey;
+    uri = baseUri + distParams + dateParams + jamKey;
 
     console.log("Attempting to connect to: ", uri);
 
@@ -54,7 +54,8 @@ module.exports = function(app, passport) {
       var body = JSON.parse(body);
 
       // Call res.send in the API request's callback*!
-      res.send(body.events);
+      console.log("body.Events: ", body.Events)
+      res.send(body.Events);
     });
   });
 
@@ -84,10 +85,10 @@ module.exports = function(app, passport) {
   app.get('/users', userController.all);
 
   // return all events
-  app.get('/myevents', eventController.all);
+  app.get('/myevents', userController.myEvents);
 
   // mount API router
-  app.use('/api', router);
+    // app.use('/api', router);
 
 }
 
