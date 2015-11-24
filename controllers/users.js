@@ -11,7 +11,7 @@ module.exports = {
 
   attendEvent: function(req, res) {
     User.findById(req.user.id, function(err, user) {
-      user.myEvents.push({eventInfo: req.body.event, attending: true, following: false});
+      user.myEvents.push({eventId: mongoose.Types.ObjectId(req.body.eventId), attending: true, following: false});
       user.save(function(err) {
         res.send(user);
       });
@@ -20,7 +20,7 @@ module.exports = {
 
   followEvent: function(req, res) {
     User.findById(req.user.id, function(err, user) {
-      user.myEvents.push({eventInfo: req.body.event, attending: false, follow: true});
+      user.myEvents.push({eventId: mongoose.Types.ObjectId(req.body.eventId), attending: false, follow: true});
       user.save(function(err) {
         res.send(user);
       });
@@ -29,7 +29,7 @@ module.exports = {
 
   unattendEvent: function(req, res) {
     User.findById(req.user.id, function(err, user) {
-      user.myEvents.id(req.params.id).remove();
+      user.myEvents.eventId(req.params.id).remove();
       user.save(function(err) {
         res.send(user);
       });
@@ -38,7 +38,7 @@ module.exports = {
 
   unfollowEvent: function(req, res) {
     User.findById(req.user.id, function(err, user) {
-      user.myEvents.id(req.params.id).remove();
+      user.myEvents.eventId(req.params.id).remove();
       user.save(function(err) {
         res.send(user);
       });

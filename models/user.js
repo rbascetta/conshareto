@@ -5,7 +5,7 @@ var eventSchema = require('./event');
 // There is no model and no 'facts' collection
 
 var myEventSchema = new mongoose.Schema({
-  eventInfo: eventSchema,
+  eventId: { type: mongoose.Schema.Types.ObjectId, ref: 'Event' },
   attending: Boolean,
   following: Boolean
 });

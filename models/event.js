@@ -17,10 +17,11 @@ var artistSchema = new mongoose.Schema({
 });
 
 var eventSchema = new mongoose.Schema({
+  name: String,
   artists: [artistSchema],
   date: Date,
   venue: venueSchema,
   ticketUrl: String
 });
 
-module.exports =  eventSchema;
+module.exports =  mongoose.model('Event', eventSchema);
