@@ -9,29 +9,42 @@ module.exports = {
     });
   },
 
+  eventInfo: function(req, res) {
+    Event.findById(req.body.id, function (err, event) {
+      res.send(event);
+    });
+  },
+
   attendEvent: function(req, res) {
     Event.findBy({name: req.body.name}, function(err, event) {
       if (event) {
-        User.findById(req.user.id, function(err, user) {
-          user.myEvents.push({eventId: event._id, attending: true, following: false});
-          user.save(function(err) {
-            res.send(user);
+          req.user.myEvents.push({eventId: event._id, attending: true, following: false});
+          req.user.save(function(err) {
+            res.send(req.user);
           });
-        });
       } else {
+        var artistArray = [];
+        req.body.artists.forEach(function(artist) {
+          artistArray.push(artist);
+        });
         var newEvent = new Event({
           name: req.body.name,
-          artists: [artistSchema],
+          artists: artistArray,
           date: req.body.date,
-          venue:  req.body.venue.name,
+          venue:  {
+            name: req.body.venue.name,
+            address: req.body.venue.adddress,
+            city: req.body.venue.city,
+            state: req.body.venue.state,
+            zipcode: req.body.venue.zipcode,
+            venueUrl: req.body.venue.venueUrl
+          },
           ticketUrl: req.body.ticketUrl
         });
         newEvent.save();
-        User.findById(req.user.id, function(err, user) {
-          user.myEvents.push({eventId: newEvent._id, attending: true, following: false});
-          user.save(function(err) {
-            res.send(user);
-          });
+        req.user.myEvents.push({eventId: newEvent._id, attending: true, following: false});
+        req.user.save(function(err) {
+          res.send(req.user);
         });
       }
     });

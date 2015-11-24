@@ -21,7 +21,8 @@ var eventSchema = new mongoose.Schema({
   artists: [artistSchema],
   date: Date,
   venue: venueSchema,
-  ticketUrl: String
+  ticketUrl: String,
+  jamBaseId: String
 });
 
 module.exports =  mongoose.model('Event', eventSchema);
