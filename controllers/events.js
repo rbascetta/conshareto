@@ -16,12 +16,15 @@ module.exports = {
   },
 
   attendEvent: function(req, res) {
-    console.log('The user is: ' + req.user.firstName);
-    Event.findBy({jamBaseId: req.body.Id}, function(err, event) {
+    console.log('The usery user is: ' + req.user.firstName);
+
+    Event.findOne({jamBaseId: req.body.Id}, function(err, event) {
       if (event) {
           req.user.myEvents.push({eventId: event._id, attending: true, following: false});
+          console.log('the id is' + event._id);
           req.user.save(function(err) {
-            res.send(req.user);
+            res.json(req.user);
+            console.log('the user is saved with my events: ' + req.user.myEvents);
           });
       } else {
         var artistArray = [];
@@ -33,19 +36,22 @@ module.exports = {
           date: req.body.Date,
           venue:  {
             name: req.body.Venue.Name,
-            address: req.body.Venue.Adddress,
+            address: req.body.Venue.Address,
             city: req.body.Venue.City,
             state: req.body.Venue.StateCode,
             zipcode: req.body.Venue.ZipCode,
-            venueUrl: req.body.Venue.Url
+            venueUrl: req.body.Venue.Url,
+
           },
-          ticketUrl: req.body.TicketUrl
+          ticketUrl: req.body.TicketUrl,
+          jamBaseId: req.body.Id
         });
         newEvent.save();
+        console.log('the new id is' + newEvent._id);
         req.user.myEvents.push({eventId: newEvent._id, attending: true, following: false});
         req.user.save(function(err) {
           console.log('My events are :' + req.user.myEvents);
-          res.send(req.user);
+          res.json(req.user.myEvents);
         });
       }
     });
