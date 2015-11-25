@@ -81,15 +81,10 @@ module.exports = function(app, passport) {
       req.logout(); res.redirect('/');
     });
 
-  // return all users
-  app.get('/users', userController.all);
-
   // return all events
   app.get('/myevents', userController.myEvents);
 
-  // mount API router
-    // app.use('/api', router);
-
+  app.put('/search/:id', eventController.attendEvent);
 }
 
 
