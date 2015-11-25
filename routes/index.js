@@ -84,7 +84,7 @@ module.exports = function(app, passport) {
   app.get('/myevents', userController.myEvents);
 
   // Attend event
-  app.put('/search/:id', eventController.attendEvent);
+  app.put('/attendevent/:id', eventController.attendEvent);
 
   // Follow event
   // app.put('/search/:id', eventController.followEvent);
