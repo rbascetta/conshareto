@@ -17,7 +17,6 @@ var artistSchema = new mongoose.Schema({
 });
 
 var eventSchema = new mongoose.Schema({
-  name: String,
   artists: [artistSchema],
   date: Date,
   venue: venueSchema,

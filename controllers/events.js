@@ -16,7 +16,7 @@ module.exports = {
   },
 
   attendEvent: function(req, res) {
-    Event.findBy({name: req.body.name}, function(err, event) {
+    Event.findBy({jamBaseId: req.body.Id}, function(err, event) {
       if (event) {
           req.user.myEvents.push({eventId: event._id, attending: true, following: false});
           req.user.save(function(err) {
@@ -24,22 +24,21 @@ module.exports = {
           });
       } else {
         var artistArray = [];
-        req.body.artists.forEach(function(artist) {
-          artistArray.push(artist);
+        req.body.Artists.forEach(function(artist) {
+          artistArray.push(artist.Name);
         });
         var newEvent = new Event({
-          name: req.body.name,
           artists: artistArray,
-          date: req.body.date,
+          date: req.body.Date,
           venue:  {
-            name: req.body.venue.name,
-            address: req.body.venue.adddress,
-            city: req.body.venue.city,
-            state: req.body.venue.state,
-            zipcode: req.body.venue.zipcode,
-            venueUrl: req.body.venue.venueUrl
+            name: req.body.Venue.Name,
+            address: req.body.Venue.Adddress,
+            city: req.body.Venue.City,
+            state: req.body.Venue.StateCode,
+            zipcode: req.body.Venue.ZipCode,
+            venueUrl: req.body.Venue.Url
           },
-          ticketUrl: req.body.ticketUrl
+          ticketUrl: req.body.TicketUrl
         });
         newEvent.save();
         req.user.myEvents.push({eventId: newEvent._id, attending: true, following: false});
@@ -51,7 +50,7 @@ module.exports = {
   },
 
   followEvent: function(req, res) {
-    Event.findBy({name: req.body.name}, function(err, event) {
+    Event.findBy({jamBaseId: req.body.Id}, function(err, event) {
       if (event) {
           req.user.myEvents.push({eventId: event._id, attending: false, following: true});
           req.user.save(function(err) {
@@ -59,22 +58,21 @@ module.exports = {
           });
       } else {
         var artistArray = [];
-        req.body.artists.forEach(function(artist) {
-          artistArray.push(artist);
+        req.body.Artists.forEach(function(artist) {
+          artistArray.push(artist.Name);
         });
         var newEvent = new Event({
-          name: req.body.name,
           artists: artistArray,
-          date: req.body.date,
+          date: req.body.Date,
           venue:  {
-            name: req.body.venue.name,
-            address: req.body.venue.adddress,
-            city: req.body.venue.city,
-            state: req.body.venue.state,
-            zipcode: req.body.venue.zipcode,
-            venueUrl: req.body.venue.venueUrl
+            name: req.body.Venue.Name,
+            address: req.body.Venue.Adddress,
+            city: req.body.Venue.City,
+            state: req.body.Venue.StateCode,
+            zipcode: req.body.Venue.ZipCode,
+            venueUrl: req.body.Venue.Url
           },
-          ticketUrl: req.body.ticketUrl
+          ticketUrl: req.body.TicketUrl
         });
         newEvent.save();
         req.user.myEvents.push({eventId: newEvent._id, attending: false, following: true});
