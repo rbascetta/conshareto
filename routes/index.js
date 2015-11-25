@@ -83,7 +83,7 @@ module.exports = function(app, passport) {
   router.get('/myevents', userController.myEvents);
 
   // Attend event
-  router.post('/attendevent', eventController.attendEvent);
+  router.post('/attendevent', isLoggedIn, eventController.attendEvent);
 
   app.use('/api', router);
 
