@@ -89,6 +89,7 @@ module.exports = function(app, passport) {
   // Follow event
   // app.put('/search/:id', eventController.followEvent);
 
+}
 
 function isLoggedIn(req, res, next) {
   if ( req.isAuthenticated() ) return next();
