@@ -27,7 +27,7 @@ $('#event_search').on('click', function(el){
         $.ajax({
           url: '/attendevent',
           method: 'POST',
-          data: attendEvent
+          data: {attendEvent: attendEvent, user: user}
         });
 
     });
