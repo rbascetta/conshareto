@@ -29,7 +29,7 @@ $('#event_search').on('click', function(el){
         $.ajax({
           url: '/api/attendevent',
           method: 'POST',
-          data: attendEvent
+          data: {attendEvent: attendEvent}
         }).done(function(data) {
             console.log(data);
         });
