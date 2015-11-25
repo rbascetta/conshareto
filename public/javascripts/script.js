@@ -12,7 +12,7 @@ $('#event_search').on('click', function(el){
       $('body').append(
         '<div id=' + event.Id + '>' + 'Date: ' + event.Date
         + ' Venue: '+ event.Venue.Name + ' Artist: '+ event.Artists[0].Name
-        + '<button class="attend" data='+ event.Id+'>attend</button></div>'
+        + '<button class="attend" data='+ event.Id +'>attend</button></div>'
         );
     });
 

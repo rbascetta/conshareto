@@ -16,6 +16,7 @@ module.exports = {
   },
 
   attendEvent: function(req, res) {
+    console.log('The user is: ' + req.user.firstName);
     Event.findBy({jamBaseId: req.body.Id}, function(err, event) {
       if (event) {
           req.user.myEvents.push({eventId: event._id, attending: true, following: false});
@@ -43,6 +44,7 @@ module.exports = {
         newEvent.save();
         req.user.myEvents.push({eventId: newEvent._id, attending: true, following: false});
         req.user.save(function(err) {
+          console.log('My events are :' + req.user.myEvents);
           res.send(req.user);
         });
       }
