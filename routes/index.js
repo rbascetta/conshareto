@@ -60,7 +60,6 @@ module.exports = function(app, passport) {
   });
 
   /* GET home page. */
-
   app.get('/', function(req, res, next) {
     res.render('index', { title: "conshareto", user: req.user });
   });
@@ -81,14 +80,16 @@ module.exports = function(app, passport) {
       req.logout(); res.redirect('/');
     });
 
-  // return all users
-  app.get('/users', userController.all);
-
-  // return all events
+  // return user's events
   app.get('/myevents', userController.myEvents);
 
-  // mount API router
-    // app.use('/api', router);
+  // Attend event
+  app.put('/search/:id', eventController.attendEvent);
+
+  // Follow event
+  // app.put('/search/:id', eventController.followEvent);
+
+
 
 }
 
