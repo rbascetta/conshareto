@@ -1,13 +1,26 @@
+
+
 body {
   padding-top: 150px;
   background-image: url(https://i.imgur.com/reOFIeK.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center; }
+  background-position: center;
+}
 
 .text-center h1 {
-  background-image: url(https://i.imgur.com/0Kyu8ea.png); }
+  background-image: url(https://i.imgur.com/0Kyu8ea.png);
+}
 
 .lead {
   font-family: Arkhip;
-  color: white; }
+  color: white;
+}
+
+.form-group {
+  margin: 10px;
+}
+
+.dropdown-menu {
+  min-width: 250px !important;
+}

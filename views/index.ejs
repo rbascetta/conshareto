@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head><% include partials/template/head.ejs %></head>
-  <body>
-    <% include partials/template/header.ejs %>
+  <header><% include partials/template/navbar.ejs %></header>
 
-    <section class="layout">
-      <h1><%= title %></h1>
-      <% if (user) { %>
-      <h4> Welcome, <%= user.firstName %> </h4><a href="/logout">Logout</a>
-      <% } else { %>
-      <a href="/auth/google">Login with Google</a>
-      <% } %>
-    </section><!-- layout -->
+  <body>
+
+  <div class="container">
+
+    <div class="text-center" style="text-align:center">
+      <img src="images/conshareto_final_blue.png" width="750">
+      <p class="lead" style="font-size: 30px">FIND YOUR NEXT CONCERT HERE</p>
+      <p class="lead" style="font-size: 22px">Search by zipcode.</p>
+    </div>
+
+  </div><!-- /.container -->
+
+
 
     <% include partials/template/footer.ejs %>
     <% include partials/template/jsdefaults.ejs %>
