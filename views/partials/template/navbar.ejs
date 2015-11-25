@@ -20,19 +20,19 @@
       </div><!-- layout -->
 
       <div class="col-md-4 pull-right">
-          <div class="input-group" id="adv-search">
-              <input type="text" class="form-control" placeholder="ENTER ZIPCODE - Dropdown to filter" />
+          <div class="input-group">
+              <input type="text" class="form-control" id="zip_search" placeholder="ENTER ZIPCODE - Dropdown to filter" />
               <div class="input-group-btn">
                   <div class="btn-group" role="group">
                       <div class="dropdown dropdown-lg">
                       <button type="button" class="btn btn-primary" id="event_search"><span class="glyphicon glyphicon-music" aria-hidden="true"></span></button>
                           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
                           <div class="dropdown-menu dropdown-menu-right" role="menu">
-                              <form>
+                              <form class="form-horizontal" role="form">
                                 <div class="form-group">
                                   <label>Filter by Radius (miles)</label>
                                   <select class="form-control" id="drop_radius">
-                                      <option value="0" selected>All Events</option>
+                                      <option value="0" selected>Choose Distance</option>
                                       <option value="1">Within 5 Miles</option>
                                       <option value="2">Within 10 Miles</option>
                                       <option value="3">Within 20 Miles</option>
@@ -40,11 +40,11 @@
                                   </select>
                                 </div>
                                 <div class="form-group">
-                                  <label class="form-control">Artist Name</label>
+                                  <label for="contain">Artist Name</label>
                                   <input class="form-control" id="artist_field" type="text" />
                                 </div>
                                 <div class="form-group">
-                                  <label class="form-control">Genre</label>
+                                  <label for="contain">Genre</label>
                                   <input class="form-control" id="genre_field" type="text" />
                                 </div>
                                 <button type="submit" class="btn btn-primary" id="filter_eventSearch"><span class="glyphicon glyphicon-music" aria-hidden="true"></span></button>
