@@ -1,13 +1,4 @@
 var searchResults=[];
-// $('.attend-event').on('click', function(el) {
-
-//   var  eventId
-//  if the event is already in database
-//   set eventId = the id
-//  create new event and set eventId equal to the id
-//  send eventId to user list of events
-// });
-
 
 
 $('#event_search').on('click', function(el){
@@ -21,8 +12,17 @@ $('#event_search').on('click', function(el){
       $('body').append(
         '<div id=' + event.Id + '>' + 'Date: ' + event.Date
         + ' Venue: '+ event.Venue.Name + ' Artist: '+ event.Artists[0].Name
-        +'</div>'
+        + '<button class="attend" data='+ event.Id+'>attend</button></div>'
         );
+    });
+    $('.attend').on('click', function() {
+        console.log("clicked");
+            // $.ajax({
+            //   url: '/attendevent',
+            //   method: 'POST',
+            //   data: {}
+            // });
+
     });
   });
 });
