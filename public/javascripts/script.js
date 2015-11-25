@@ -15,6 +15,7 @@ $('#event_search').on('click', function(el){
         + '<button class="attend" data='+ event.Id +'>attend</button></div>'
         );
     });
+
     $('.attend').on('click', function() {
         var jamId = $(this).attr('data');
         console.log(jamId);
@@ -24,13 +25,16 @@ $('#event_search').on('click', function(el){
                 attendEvent = result;
             }
         });
+        console.log(attendEvent);
         $.ajax({
-          url: '/attendevent',
+          url: '/api/attendevent',
           method: 'POST',
           data: attendEvent
+        }).done(function(data) {
+            console.log(data);
         });
-
     });
+
   });
 });
 
