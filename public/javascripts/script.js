@@ -25,5 +25,5 @@ $('#event_search').on('click', function(el){
         );
     });
   });
-// })
+});
 
