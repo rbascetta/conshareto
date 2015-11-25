@@ -9,4 +9,18 @@ module.exports = {
     });
   },
 
+  myEvents: function (req, res) {
+    myEventIdsArray = [];
+    req.user.myEvents.forEach(function (myEvent) {
+      myEventIdsArray.push(myEvent.eventId);
+    });
+    myEventObjects = [];
+    myEventIdsArray.forEach(function (eventId) {
+      Event.findById(eventId, function (err, event) {
+        myEventObjects.push(event);
+      });
+    });
+    res.send(myEventObjects);
+  }
+
 };

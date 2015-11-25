@@ -24,7 +24,7 @@ app.locals.title = app.get('title');
 // middleware!
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser()); // parse cookies
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -53,11 +53,11 @@ require('./config/passport')(passport);
 require('./routes/index')(app, passport);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+// app.use(function(req, res, next) {
+//   var err = new Error('Not Found');
+//   err.status = 404;
+//   next(err);
+// });
 
 
 // Useful for debugging the state of requests.
