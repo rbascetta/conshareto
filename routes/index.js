@@ -81,13 +81,21 @@ module.exports = function(app, passport) {
     });
 
   // return user's events
-  app.get('/myevents', userController.myEvents);
+  router.get('/myevents', userController.myEvents);
 
   // Attend event
-  app.put('/attendevent', eventController.attendEvent);
+  router.post('/attendevent', function() {
+    console.log("checkpoint.");
+    eventController.attendEvent;
+});
+  // app.put('/attendevent', function(req, res, next){
+  //   eventController.attendEvent(req);
+  // });
 
   // Follow event
   // app.put('/search/:id', eventController.followEvent);
+
+  app.use('/api', router);
 
 }
 

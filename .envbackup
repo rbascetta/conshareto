@@ -1,0 +1,5 @@
+GOOGLE_CLIENT_ID=790557676314-msd1vofk1cqlm2apjfjgc08bj8smvg4d.apps.googleusercontent.com
+GOOGLE_SECRET=yHGL09Sfxz0edSOljO9TrORX
+GOOGLE_CALLBACK=http://localhost:3000/oauth2callback
+JAMBASE_KEY=ns7avjvn2f6z48fbybnapyh7
+DATABASE_URL=mongodb://conshareto:tonyandtheultras@ds057254.mongolab.com:57254/conshareto
