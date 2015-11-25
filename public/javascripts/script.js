@@ -9,7 +9,7 @@
 
 
 
-// $('#search').on('click', function(el){
+ $('#search').on('click', function(el){
   $.ajax({
     url: '/search',
     method: 'POST',
@@ -23,4 +23,4 @@
         );
     });
   });
-// })
+ });
