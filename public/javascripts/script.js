@@ -10,11 +10,7 @@ var searchResults=[];
 
 
 
-<<<<<<< HEAD
- $('#search').on('click', function(el){
-=======
 $('#event_search').on('click', function(el){
->>>>>>> bcd14905ad0f790fa2877cfb11ef2b75fdb74dec
   $.ajax({
     url: '/search',
     method: 'POST',
@@ -29,9 +25,5 @@ $('#event_search').on('click', function(el){
         );
     });
   });
-<<<<<<< HEAD
- });
-=======
 });
 
->>>>>>> bcd14905ad0f790fa2877cfb11ef2b75fdb74dec
