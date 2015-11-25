@@ -5,22 +5,21 @@
 
       <div class="col-md-4">
         <ul class="nav navbar-nav">
-          <li><a href="#"><span style="font-size:24px">conshareto</span></a></li>
-          <li><a href="#"><span style="font-size:16px">Register Here</span></a></li>
-          <li><a href="/auth/google"><span style="font-size:16px">Login with&nbsp;<img src="images/google_logo.png" width="65"></span></a>
+          <li><a href="/"><img src="images/conshareto_final_white.png" width="150"></a></li>
+          <li style="padding: 7px">
+            <% if (user) { %>
+              <h4 style="color: #4174b9"> Welcome, <%= user.firstName %> &nbsp;&nbsp;&nbsp;&nbsp;<a href="/logout" style="font-size: 20px; color:white">Logout</a></h4></li>
+            <% } else { %>
+              <a href="/auth/google"><span style="font-size:16px">Login with&nbsp;<img src="images/google_logo.png" width="65"></span></a></li>
+            <% } %>
+          </li>
         </ul>
       </div>
 
-      <div class="col-md-4">
-        <% if (user) { %>
-          <h4 style="color: #4174b9"> Welcome, <%= user.firstName %> &nbsp;&nbsp;&nbsp;&nbsp;<a href="/logout" style="font-size: 20px; color:white">Logout</a></h4>
-        <% } else { %>
-          <a href="/auth/google">Login with Google</a>
-        <% } %>
-      </div><!-- layout -->
+
 
       <div class="col-md-4 pull-right">
-          <div class="input-group">
+          <div class="input-group" style="padding: 10px">
               <input type="text" class="form-control" id="zip_search" placeholder="ENTER ZIPCODE - Dropdown to filter" />
               <div class="input-group-btn">
                   <div class="btn-group" role="group">
