@@ -60,7 +60,6 @@ module.exports = function(app, passport) {
   });
 
   /* GET home page. */
-
   app.get('/', function(req, res, next) {
     res.render('index', { title: "conshareto", user: req.user });
   });
@@ -81,13 +80,16 @@ module.exports = function(app, passport) {
       req.logout(); res.redirect('/');
     });
 
-  // return all events
+  // return user's events
   app.get('/myevents', userController.myEvents);
 
+  // Attend event
   app.put('/search/:id', eventController.attendEvent);
+
+  // Follow event
+  // app.put('/search/:id', eventController.followEvent);
+
 }
-
-
 
 function isLoggedIn(req, res, next) {
   if ( req.isAuthenticated() ) return next();
