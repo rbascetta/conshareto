@@ -5,7 +5,7 @@ $('#event_search').on('click', function(el){
   $.ajax({
     url: '/search',
     method: 'POST',
-    data: {zip:$('#zip_search').val()}
+    data: {zip: $('#zip_search').val()}
   }).done(function(events){
     searchResults = events;
     events.forEach(function(event){
@@ -16,12 +16,19 @@ $('#event_search').on('click', function(el){
         );
     });
     $('.attend').on('click', function() {
-        console.log("clicked");
-            // $.ajax({
-            //   url: '/attendevent',
-            //   method: 'POST',
-            //   data: {}
-            // });
+        var jamId = $(this).attr('data');
+        console.log(jamId);
+        var attendEvent;
+        searchResults.forEach(function(result) {
+            if (result.Id == jamId) {
+                attendEvent = result;
+            }
+        });
+        $.ajax({
+          url: '/attendevent',
+          method: 'POST',
+          data: attendEvent
+        });
 
     });
   });
