@@ -54,7 +54,6 @@ module.exports = function(app, passport) {
       var body = JSON.parse(body);
 
       // Call res.send in the API request's callback*!
-      console.log("body.Events: ", body.Events)
       res.send(body.Events);
     });
   });
@@ -81,13 +80,12 @@ module.exports = function(app, passport) {
     });
 
   // return user's events
-  app.get('/myevents', userController.myEvents);
+  router.get('/myevents', userController.myEvents);
 
   // Attend event
-  app.put('/attendevent', eventController.attendEvent);
+  router.post('/attendevent', eventController.attendEvent);
 
-  // Follow event
-  // app.put('/search/:id', eventController.followEvent);
+  app.use('/api', router);
 
 }
 

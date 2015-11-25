@@ -6,7 +6,8 @@ var bodyParser   = require('body-parser');
 var debug        = require('debug')('app:http');
 var session      = require('express-session'); // for login sessions
 var passport     = require('passport'); // Easy API Authorization
-var mongoose     = require('./config/database');
+// var mongoose     = require('./config/database');
+require('./config/database');
 var users        = require('./routes/users');
 var app          = express(); // assign "app" to express functions.
 
