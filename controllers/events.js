@@ -1,4 +1,7 @@
 var Event = require('../models/event');
+var User = require('../models/user');
+
+var locus = require('locus');
 
 module.exports = {
 
@@ -16,44 +19,53 @@ module.exports = {
   },
 
   attendEvent: function(req, res) {
-    console.log('The usery user is: ' + req.user.firstName);
+    console.log('The usery user is: ' + req.user.firstName + ' ' + req.user.id);
+    User.findById(req.user.id, function(err, currentUser) {
+      Event.findOne({jamBaseId: req.body.Id}, function(err, event) {
+        if (event) {
+          var notInMyEvents = true;
 
-    Event.findOne({jamBaseId: req.body.Id}, function(err, event) {
-      if (event) {
-          req.user.myEvents.push({eventId: event._id, attending: true, following: false});
-          console.log('the id is' + event._id);
-          req.user.save(function(err) {
-            res.json(req.user);
-            console.log('the user is saved with my events: ' + req.user.myEvents);
+          currentUser.myEvents.forEach(function(myEvent) {
+            if (myEvent.eventId.equals(event._id)){
+              console.log('This event is already in your myEvents list!');
+              notInMyEvents = false;
+            }
           });
-      } else {
-        var artistArray = [];
-        req.body.Artists.forEach(function(artist) {
-          artistArray.push(artist.Name);
-        });
-        var newEvent = new Event({
-          artists: artistArray,
-          date: req.body.Date,
-          venue:  {
-            name: req.body.Venue.Name,
-            address: req.body.Venue.Address,
-            city: req.body.Venue.City,
-            state: req.body.Venue.StateCode,
-            zipcode: req.body.Venue.ZipCode,
-            venueUrl: req.body.Venue.Url,
+          if (notInMyEvents) {
+            currentUser.myEvents.push({eventId: event._id, attending: true, following: false});
+            currentUser.save(function(err) {
+              res.json(currentUser.myEvents);
+              console.log('The user is saved with a new myEvent: ' + currentUser.myEvents);
+            });
+          }
+        } else {
+          var artistArray = [];
+          req.body.Artists.forEach(function(artist) {
+            artistArray.push({'name': artist.Name});
+          });
+          Event.create({
+            artists: artistArray,
+            date: req.body.Date,
+            venue:  {
+              name: req.body.Venue.Name,
+              address: req.body.Venue.Address,
+              city: req.body.Venue.City,
+              state: req.body.Venue.StateCode,
+              zipcode: req.body.Venue.ZipCode,
+              venueUrl: req.body.Venue.Url,
 
-          },
-          ticketUrl: req.body.TicketUrl,
-          jamBaseId: req.body.Id
-        });
-        newEvent.save();
-        console.log('the new id is' + newEvent._id);
-        req.user.myEvents.push({eventId: newEvent._id, attending: true, following: false});
-        req.user.save(function(err) {
-          console.log('My events are :' + req.user.myEvents);
-          res.json(req.user.myEvents);
-        });
-      }
+            },
+            ticketUrl: req.body.TicketUrl,
+            jamBaseId: req.body.Id
+          }, function(err, newEvent){
+            currentUser.myEvents.push({eventId: newEvent._id, attending: true, following: false});
+            currentUser.save(function(err) {
+              console.log('The user and new event are saved. My events are :' + currentUser.myEvents);
+              res.json(currentUser.myEvents);
+            });
+          });
+        }
+      });
     });
   },
 
