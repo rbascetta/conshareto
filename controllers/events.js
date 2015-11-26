@@ -1,6 +1,8 @@
 var Event = require('../models/event');
 var User = require('../models/user');
 
+var locus = require('locus');
+
 module.exports = {
 
   all: function(req, res) {
@@ -19,22 +21,29 @@ module.exports = {
   attendEvent: function(req, res) {
     console.log('The usery user is: ' + req.user.firstName + ' ' + req.user.id);
     User.findById(req.user.id, function(err, currentUser) {
-      console.log('The callback user is ' + currentUser.firstName);
       Event.findOne({jamBaseId: req.body.Id}, function(err, event) {
         if (event) {
+          var notInMyEvents = true;
+
+          currentUser.myEvents.forEach(function(myEvent) {
+            if (myEvent.eventId.equals(event._id)){
+              console.log('This event is already in your myEvents list!');
+              notInMyEvents = false;
+            }
+          });
+          if (notInMyEvents) {
             currentUser.myEvents.push({eventId: event._id, attending: true, following: false});
-            console.log('The event venue is ', event.venue.name);
-            console.log('the id is' + event._id);
             currentUser.save(function(err) {
               res.json(currentUser.myEvents);
-              console.log('the user is saved with my events: ' + currentUser.myEvents);
+              console.log('The user is saved with a new myEvent: ' + currentUser.myEvents);
             });
+          }
         } else {
           var artistArray = [];
           req.body.Artists.forEach(function(artist) {
-            artistArray.push(artist.Name);
+            artistArray.push({'name': artist.Name});
           });
-          var newEvent = new Event({
+          Event.create({
             artists: artistArray,
             date: req.body.Date,
             venue:  {
@@ -48,13 +57,10 @@ module.exports = {
             },
             ticketUrl: req.body.TicketUrl,
             jamBaseId: req.body.Id
-          });
-          newEvent.save(function(err) {
-            console.log('the new id is' + newEvent._id);
-            console.log('The event is ' + newEvent);
+          }, function(err, newEvent){
             currentUser.myEvents.push({eventId: newEvent._id, attending: true, following: false});
             currentUser.save(function(err) {
-              console.log('My events are :' + currentUser.myEvents);
+              console.log('The user and new event are saved. My events are :' + currentUser.myEvents);
               res.json(currentUser.myEvents);
             });
           });
