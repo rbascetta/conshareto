@@ -1,22 +1,20 @@
 var searchResults=[];
 
-
-$('#event_search').on('click', function(el){
-  $.ajax({
-    url: '/search',
-    method: 'POST',
-    data: {zip: $('#zip_search').val()}
-  }).done(function(events){
-    searchResults = events;
-    events.forEach(function(event){
-      $('body').append(
-        '<div id=' + event.Id + '>' + 'Date: ' + event.Date
-        + ' Venue: '+ event.Venue.Name + ' Artist: '+ event.Artists[0].Name
-        + '<button class="attend" data='+ event.Id +'>attend</button></div>'
+$(document).ready(function() {
+  var eventTemplate = _.template($("#event-template").html());
+  $('#event_search').on('click', function(el){
+    $.ajax({
+      url: '/search',
+      method: 'POST',
+      data: {zip: $('#zip_search').val()}
+    }).done(function(events){
+      searchResults = events;
+      events.forEach(function(event){
+        $('body').append(
+          eventTemplate({event: event})
         );
-    });
-
-    $('.attend').on('click', function() {
+      });
+      $('.attend').on('click', function() {
         var jamId = $(this).attr('data');
         console.log(jamId);
         var attendEvent;
@@ -33,8 +31,9 @@ $('#event_search').on('click', function(el){
         }).done(function(data) {
             console.log(data);
         });
+      });
     });
-
   });
 });
+
 

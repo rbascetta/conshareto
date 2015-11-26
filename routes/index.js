@@ -80,7 +80,7 @@ module.exports = function(app, passport) {
     });
 
   // return user's events
-  router.get('/myevents', userController.myEvents);
+  router.get('/myevents', isLoggedIn, userController.myEvents);
 
   // Attend event
   router.post('/attendevent', isLoggedIn, eventController.attendEvent);
