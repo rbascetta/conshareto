@@ -105,8 +105,10 @@ module.exports = {
         event.following = false;
       }
     });
+  // },
+
+  // currentEvent: function(req, res) {
+  //   res.send(body);
   }
-
-
 
 };
