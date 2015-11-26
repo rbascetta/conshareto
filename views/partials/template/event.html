@@ -1,22 +1,46 @@
 <script type="text/template" id="event-template">
 
-<div class="row divider">
-   <div class="col-sm-12"><hr></div>
+<div class="wrapper">
+    <div class="box">
+        <div class="row">
 
-<div class="row" id="eventBlock">
-  <div class="col-sm-9">
-    <h2 class="page-header"><%%= event.Artists[0].Name %><small>&nbsp;&nbsp;&nbsp;Venue Name Here</small></h2>
-    <h3><span class="label label-default" style="color:#4174b9">Date: 8888-88-88</span></h3>
-    <br>
-    <h4 class="text-muted">Time: 12:00pm&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary hover" id="btnModal" style="width: 150px">More Event Info</button></h5>
-  </div>
-  <div class="col-sm-3">
-    <div class="pull-right" id="social_buttons" style="margin-top: 30px">
-      <button type="button" class="btn btn-primary hover" id="btnAttend">Attend Event</button>
-      <hr>
-      <button type="button" class="btn btn-secondary" id="btnFollow" style="width:110px">Follow</button>
+
+
+            <div class="column col-sm-12" id="main">
+                <div class="padding">
+                    <div class="full col-sm-8 col-sm-offset-2" style="background-color: #ffffff; opacity: 0.75; border-radius: 10px">
+
+                        <div class="row" id="eventBlock">
+                          <div class="col-sm-12">
+                            <img src="https://i.imgur.com/6E94ROD.png">
+                          </div>
+                          <div class="col-sm-9">
+                            <h2 class="page-header"><%%= event.Artists[0].Name %><small>&nbsp;&nbsp;&nbsp;<%%= event.Venue.Name %></small></h2>
+                            <h3><span class="label label-secondary" style="color:#4174b9"><%%= event.Date %></span></h3>
+                            <br>
+                            <h4 class="text-muted">Time: 12:00pm&nbsp;&nbsp;&nbsp;
+                              <button type="button" class="btn btn-primary hover" id="btnModal"
+                                style="width: 150px; background-image: url(https://i.imgur.com/UoE80hr.png); background-position: center">
+                                  More Event Info</button></h4>
+                          </div>
+                          <div class="col-sm-3">
+                            <div class="pull-right" id="social_buttons" style="margin-top: 30px">
+                              <button type="button" class="btn btn-primary hover" id="btnAttend">Attend Event</button>
+                              <hr>
+                              <button type="button" class="btn btn-secondary" id="btnFollow" style="width:110px">Follow</button>
+                            </div>
+                          </div>
+                          <div class="col-sm-12">
+                            <img src="https://i.imgur.com/hAC8ATl.png">
+                          </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
-  </div>
 </div>
 
 </script>
