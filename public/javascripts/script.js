@@ -14,6 +14,7 @@ $(document).ready(function() {
           eventTemplate({event: event})
         );
       });
+      $('.attend').off();
       $('.attend').on('click', function() {
         var jamId = $(this).attr('data');
         console.log(jamId);
