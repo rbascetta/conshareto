@@ -79,6 +79,9 @@ module.exports = function(app, passport) {
       req.logout(); res.redirect('/');
     });
 
+  // route to eventController function that returns current event.
+  router.get('/eventinfo', eventController.eventInfo);
+
   // return user's events
   router.get('/myevents', isLoggedIn, userController.myEvents);
 
