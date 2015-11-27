@@ -18,7 +18,7 @@
                             <h3><span class="label label-secondary" style="color:#4174b9"><%%= event.Date %></span></h3>
                             <br>
                             <h4 class="text-muted">Time: 12:00pm&nbsp;&nbsp;&nbsp;
-                              <button type="button" class="btn btn-primary hover" id="btnModal"
+                              <button type="button" class="btn btn-primary hover" data-toggle="modal" data-target="#myModal" id="btnModal"
                                 style="width: 150px; background-image: url(https://i.imgur.com/UoE80hr.png); background-position: center">
                                   More Event Info</button></h4>
                           </div>
@@ -39,6 +39,15 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+   <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <button type="button" class="btn btn-default pull-right" data-dismiss="modal">X</button>
+      <h1> <%%= event.Artists[0].Name %> </h1>
+    </div>
+  </div>
 </div>
 
 </script>
