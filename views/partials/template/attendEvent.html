@@ -1,5 +1,4 @@
-<script type="text/template" id="event-template">
-
+<script type="text/template" id="attend-event-template">
 
 <div class="wrapper">
     <div class="box">
@@ -13,19 +12,19 @@
                           <div class="col-sm-12" id="blockTop">
                           </div>
                           <div class="col-sm-9">
-                            <h2 class="page-header"><%%= event.Artists[0].Name %><small>&nbsp;&nbsp;&nbsp;<%%= event.Venue.Name %></small></h2>
-                            <h3><span class="label label-secondary" style="color:#4174b9"><%%= dateConvert(event.Date) %></span></h3>
+                            <h2 class="page-header"><%%= event.artists[0].name %><small>&nbsp;&nbsp;&nbsp;<%%= event.venue.name %></small></h2>
+                            <h3><span class="label label-secondary" style="color:#4174b9"><%%= dateConvert(event.date) %></span></h3>
                             <br>
 
-                            <h4 class="text-muted">Time: <%%= timeConvert(event.Date) %>&nbsp;&nbsp;&nbsp;
-                              <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal<%%= event.Id %>" id="btnModal">More Event Info</button></h4>
+                            <h4 class="text-muted">Time: <%%= timeConvert(event.date) %>&nbsp;&nbsp;&nbsp;
+                              <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal<%%= event._id %>" id="btnModal">More Event Info</button></h4>
 
                           </div>
                           <div class="col-sm-3">
                             <div class="pull-right" id="social_buttons" style="margin-top: 30px">
-                              <button type="button" class="btn btn-primary hover attend" data="<%%=event.Id %>" id="btnAttend">Attend Event</button>
-                              <hr>
-                              <button type="button" class="btn btn-secondary follow" data="<%%=event.Id %>" id="btnFollow" style="width:110px">Follow</button>
+                                    <button type="button" class="btn btn-primary hover unattend" data="<%%= event._id %>" id="btnUnAttend">unAttend Event</button>
+                                    <hr>
+                                    <button type="button" class="btn btn-secondary follow" data="<%%= event.jamBaseId %>" id="btnFollow" style="width:110px">Follow</button>
                             </div>
                           </div>
                           <div class="col-sm-12" id="blockBottom">
@@ -41,7 +40,7 @@
 <hr width="500">
 </div>
 
-<div class="modal fade" id="myModal<%%=event.Id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal<%%=event._id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
    <div class="modal-dialog" role="document">
     <div class="modal-content">
 
@@ -50,17 +49,17 @@
           <span aria-hidden="true">&times;</span>
           <span class="sr-only">Close</span>
         </button>
-        <h3 class="modal-title" id="myModalLabel"> <%%= event.Artists[0].Name %> <small> <%%= event.Venue.Name %> | <%%= event.Venue.City %></small> </h3>
+        <h3 class="modal-title" id="myModalLabel"> <%%= event.artists[0].name %> <small> <%%= event.venue.name %> | <%%= event.venue.city %></small> </h3>
       </div>
       <hr>
 
       <div class="modal-body">
         <div id="modalAddress">
-          <h4> <%%= event.Venue.Address %>, <%%= event.Venue.City %>, <%%= event.Venue.StateCode %>,  <%%= event.Venue.ZipCode %></h4>
+          <h4> <%%= event.venue.address %>, <%%= event.venue.city %>, <%%= event.venue.state %>,  <%%= event.venue.zipCode %></h4>
         </div>
         <br>
         <div id="venueURL">
-          <h4> <%%= event.Venue.Url %> </h4>
+          <h4> <%%= event.venue.venueUrl %> </h4>
         </div>
       </div>
       <hr>

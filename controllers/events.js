@@ -24,11 +24,15 @@ module.exports = {
       Event.findOne({jamBaseId: req.body.Id}, function(err, event) {
         if (event) {
           var notInMyEvents = true;
-
           currentUser.myEvents.forEach(function(myEvent) {
             if (myEvent.eventId.equals(event._id)){
               console.log('This event is already in your myEvents list!');
               notInMyEvents = false;
+              myEvent.attending = true;
+              myEvent.following = false;
+              currentUser.save(function(err) {
+                res.json(currentUser.myEvents);
+              });
             }
           });
           if (notInMyEvents) {
@@ -74,11 +78,15 @@ module.exports = {
       Event.findOne({jamBaseId: req.body.Id}, function(err, event) {
         if (event) {
           var notInMyEvents = true;
-
           currentUser.myEvents.forEach(function(myEvent) {
             if (myEvent.eventId.equals(event._id)){
               console.log('This event is already in your myEvents list!');
               notInMyEvents = false;
+              myEvent.attending = false;
+              myEvent.following = true;
+              currentUser.save(function(err) {
+                res.json(currentUser.myEvents);
+              });
             }
           });
           if (notInMyEvents) {
@@ -118,24 +126,31 @@ module.exports = {
     });
   },
 
-  unattendEvent: function(req, res) {
-    req.user.myEvents.forEach(function(event) {
-      if (event.eventId === req.id) {
-        event.attending = false;
-      }
+  unAttendEvent: function(req, res) {
+    User.findById(req.user.id, function(err, currentUser) {
+      currentUser.myEvents.forEach(function(event) {
+        if (event.eventId.equals(req.body._id)) {
+          event.attending = false;
+          currentUser.save(function(err) {
+            res.json(event);
+          });
+        }
+      });
     });
   },
 
-  unfollowEvent: function(req, res) {
-    req.user.myEvents.forEach(function(event) {
-      if (event.eventId === req.id) {
-        event.following = false;
-      }
+  unFollowEvent: function(req, res) {
+    User.findById(req.user.id, function(err, currentUser) {
+      currentUser.myEvents.forEach(function(event) {
+        if (event.eventId.equals(req.body._id)) {
+          event.following = false;
+          currentUser.save(function(err) {
+            res.json(event);
+          });
+        }
+      });
     });
-  // },
-
-  // currentEvent: function(req, res) {
-  //   res.send(body);
   }
+
 
 };

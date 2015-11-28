@@ -82,13 +82,20 @@ module.exports = function(app, passport) {
   // route to eventController function that returns current event.
   router.get('/eventinfo', eventController.eventInfo);
 
-  // return user's events
-  router.get('/myevents', isLoggedIn, userController.myEvents);
+  // return events users is attending
+  router.get('/myattendevents', isLoggedIn, userController.myAttendEvents);
+
+  //return events user is following
+  router.get('/myfollowevents', isLoggedIn, userController.myFollowEvents);
 
   // Attend event
   router.post('/attendevent', isLoggedIn, eventController.attendEvent);
 
   router.post('/followevent', isLoggedIn, eventController.followEvent);
+
+  router.post('/unattendevent', isLoggedIn, eventController.unAttendEvent);
+
+  router.post('/unfollowevent', isLoggedIn, eventController.unFollowEvent);
 
   app.use('/api', router);
 

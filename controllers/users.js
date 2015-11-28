@@ -10,13 +10,28 @@ module.exports = {
     });
   },
 
-  myEvents: function (req, res) {
+  myAttendEvents: function (req, res) {
     var myEventObjects = [];
     var myEvents = req.user.myEvents;
-    for (var i = 0; i < myEvents.length; i++) {
-      Event.findOne({_id: myEvents[i].eventId}, function (err, event) {
+    var myAttendEvents = myEvents.filter(function(object, index){ return (myEvents[index].attending === true); });
+    for (var i = 0; i < myAttendEvents.length; i++) {
+      Event.findOne({_id: myAttendEvents[i].eventId}, function (err, event) {
         myEventObjects.push(event);
-        if (myEventObjects.length === myEvents.length) {
+        if (myEventObjects.length === myAttendEvents.length) {
+          res.send(myEventObjects);
+        }
+      });
+    }
+  },
+
+   myFollowEvents: function (req, res) {
+    var myEventObjects = [];
+    var myEvents = req.user.myEvents;
+    var myAttendEvents = myEvents.filter(function(object, index){ return (myEvents[index].following === true); });
+    for (var i = 0; i < myAttendEvents.length; i++) {
+      Event.findOne({_id: myAttendEvents[i].eventId}, function (err, event) {
+        myEventObjects.push(event);
+        if (myEventObjects.length === myAttendEvents.length) {
           res.send(myEventObjects);
         }
       });
