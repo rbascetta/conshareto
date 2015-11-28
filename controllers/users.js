@@ -1,4 +1,5 @@
 var User = require('../models/user');
+var Event = require('../models/event');
 
 module.exports = {
 
@@ -10,17 +11,26 @@ module.exports = {
   },
 
   myEvents: function (req, res) {
-    myEventIdsArray = [];
-    req.user.myEvents.forEach(function (myEvent) {
-      myEventIdsArray.push(myEvent.eventId);
-    });
-    myEventObjects = [];
-    myEventIdsArray.forEach(function (eventId) {
-      Event.findById(eventId, function (err, event) {
-        myEventObjects.push(event);
+    var myEventObjects = [];
+    if (req.user.myEvents) {
+      console.log(req.user.firstName);
+      req.user.myEvents.forEach(function (myEvent) {
+        Event.findOne({_id: myEvent.eventId}, function (err, event) {
+          myEventObjects.push(event);
+          //console.log("inside the find by id: ", myEventObjects[0]);
+          return myEventObjects;
+        }).then(function(myEventObjects) {
+        console.log("inside the for each: ", myEventObjects[0]);
+        return myEventObjects;
+      }).then(function(myEventObjects) {
+     // console.log("just before we send: " + myEventObjects[0].venue.name);
+        res.json(myEventObjects);
       });
     });
-    res.send(myEventObjects);
+    } else {
+      res.json(myEventObjects);
+    }
+
   }
 
 };

@@ -35,6 +35,19 @@ $(document).ready(function() {
       });
     });
   });
+  $('#myeventbutton').off();
+  $('#myeventbutton').on('click', function() {
+    $.ajax({
+      url: 'api/myevents',
+      method: 'GET',
+    }).done(function(events){
+      events.forEach(function(event){
+        $('body').append(
+          eventTemplate({event: event})
+        );
+      });
+    });
+  });
 
   // $('#moreinfo').on('click', function(el){
   //   $.ajax({
