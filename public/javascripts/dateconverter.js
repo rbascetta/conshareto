@@ -22,3 +22,19 @@ function changeMonthToText(month) {
   if (month == 11) return "November";
   if (month == 12) return "December";
 }
+
+function timeConvert(date) {
+  var halfDay = "am";
+  var eventDate = new Date(date);
+  var eventHour = eventDate.getUTCHours();
+  var eventMinute = eventDate.getMinutes();
+  if (eventHour > 12) {
+    eventHour = eventHour - 12;
+    halfDay = "pm";
+  }
+  var minuteDigit = "";
+  if (eventMinute == 0) minuteDigit = "0";
+  var eventTime = eventHour + ":" + eventMinute + minuteDigit + " " + halfDay;
+  if (eventHour == 0 && eventMinute == 0 && halfDay == "am") eventTime = "TBD";
+  return eventTime;
+}
