@@ -2,6 +2,7 @@ var searchResults=[];
 
 $(document).ready(function() {
   var eventTemplate = _.template($("#event-template").html());
+  var myeventTemplate = _.template($("#myevent-template").html());
   $('#event_search').on('click', function(el){
     $.ajax({
       url: '/search',
@@ -44,7 +45,9 @@ $(document).ready(function() {
       console.log('hi');
       console.log(myEvents);
       myEvents.forEach(function(event){
-        $('body').append(event.venue.name);
+        $('body').append(
+          myeventTemplate({event: event})
+        );
       });
     });
   });
