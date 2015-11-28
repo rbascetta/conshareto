@@ -2,7 +2,8 @@ var searchResults=[];
 
 $(document).ready(function() {
   var eventTemplate = _.template($("#event-template").html());
-  var myeventTemplate = _.template($("#myevent-template").html());
+  var attendEventTemplate = _.template($("#attend-event-template").html());
+  var followEventTemplate = _.template($("#follow-event-template").html());
   $('#event_search').on('click', function(el){
     $.ajax({
       url: '/search',
@@ -56,10 +57,10 @@ $(document).ready(function() {
       });
     });
   });
-  $('#myeventbutton').off();
-  $('#myeventbutton').on('click', function() {
+  $('#myAttendButton').off();
+  $('#myAttendButton').on('click', function() {
     $.ajax({
-      url: 'api/myevents',
+      url: 'api/myattendevents',
       method: 'GET',
     }).done(function(myEvents){
       console.log('hi');
@@ -67,7 +68,23 @@ $(document).ready(function() {
       $('.wrapper').remove();
       myEvents.forEach(function(event){
         $('body').append(
-          myeventTemplate({event: event})
+          attendEventTemplate({event: event})
+        );
+      });
+    });
+  });
+  $('#myFollowButton').off();
+  $('#myFollowButton').on('click', function() {
+    $.ajax({
+      url: 'api/myfollowevents',
+      method: 'GET',
+    }).done(function(myEvents){
+      console.log('hi');
+      console.log(myEvents);
+      $('.wrapper').remove();
+      myEvents.forEach(function(event){
+        $('body').append(
+          followEventTemplate({event: event})
         );
       });
     });
