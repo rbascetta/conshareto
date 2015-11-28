@@ -40,11 +40,11 @@ $(document).ready(function() {
     $.ajax({
       url: 'api/myevents',
       method: 'GET',
-    }).done(function(events){
-      events.forEach(function(event){
-        $('body').append(
-          eventTemplate({event: event})
-        );
+    }).done(function(myEvents){
+      console.log('hi');
+      console.log(myEvents);
+      myEvents.forEach(function(event){
+        $('body').append(event.venue.name);
       });
     });
   });

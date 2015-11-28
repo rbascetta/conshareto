@@ -12,25 +12,15 @@ module.exports = {
 
   myEvents: function (req, res) {
     var myEventObjects = [];
-    if (req.user.myEvents) {
-      console.log(req.user.firstName);
-      req.user.myEvents.forEach(function (myEvent) {
-        Event.findOne({_id: myEvent.eventId}, function (err, event) {
-          myEventObjects.push(event);
-          //console.log("inside the find by id: ", myEventObjects[0]);
-          return myEventObjects;
-        }).then(function(myEventObjects) {
-        console.log("inside the for each: ", myEventObjects[0]);
-        return myEventObjects;
-      }).then(function(myEventObjects) {
-     // console.log("just before we send: " + myEventObjects[0].venue.name);
-        res.json(myEventObjects);
+    var myEvents = req.user.myEvents;
+    for (var i = 0; i < myEvents.length; i++) {
+      Event.findOne({_id: myEvents[i].eventId}, function (err, event) {
+        myEventObjects.push(event);
+        if (myEventObjects.length === myEvents.length) {
+          res.send(myEventObjects);
+        }
       });
-    });
-    } else {
-      res.json(myEventObjects);
     }
-
   }
 
 };
