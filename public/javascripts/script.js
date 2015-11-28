@@ -90,6 +90,18 @@ $(document).ready(function() {
         });
         console.log(unAttendEvent);
       });
+      $('.follow').off();
+      $('.follow').on('click', function() {
+        var jamId = $(this).attr('data');
+        console.log(jamId);
+        $.ajax({
+          url: '/api/followevent',
+          method: 'POST',
+          data: {Id: jamId}
+        }).done(function(data) {
+            console.log(data);
+        });
+      });
     });
   });
   $('#myFollowButton').off();
@@ -124,6 +136,18 @@ $(document).ready(function() {
             console.log(data);
         });
         console.log(unFollowEvent);
+      });
+      $('.attend').off();
+      $('.attend').on('click', function() {
+        var jamId = $(this).attr('data');
+        console.log(jamId);
+        $.ajax({
+          url: '/api/attendevent',
+          method: 'POST',
+          data: {Id: jamId}
+        }).done(function(data) {
+            console.log(data);
+        });
       });
     });
   });

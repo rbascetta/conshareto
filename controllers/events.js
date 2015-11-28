@@ -24,11 +24,15 @@ module.exports = {
       Event.findOne({jamBaseId: req.body.Id}, function(err, event) {
         if (event) {
           var notInMyEvents = true;
-
           currentUser.myEvents.forEach(function(myEvent) {
             if (myEvent.eventId.equals(event._id)){
               console.log('This event is already in your myEvents list!');
               notInMyEvents = false;
+              myEvent.attending = true;
+              myEvent.following = false;
+              currentUser.save(function(err) {
+                res.json(currentUser.myEvents);
+              });
             }
           });
           if (notInMyEvents) {
@@ -79,6 +83,11 @@ module.exports = {
             if (myEvent.eventId.equals(event._id)){
               console.log('This event is already in your myEvents list!');
               notInMyEvents = false;
+              myEvent.attending = false;
+              myEvent.following = true;
+              currentUser.save(function(err) {
+                res.json(currentUser.myEvents);
+              });
             }
           });
           if (notInMyEvents) {
