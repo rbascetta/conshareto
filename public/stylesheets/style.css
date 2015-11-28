@@ -29,3 +29,8 @@ body {
   position: center;
   background-image: url(https://i.imgur.com/6E94ROD.png) no-repeat;
 }
+
+.modal {
+  background: rgba(000, 000, 000, 0.6);
+  min-height:1000000px;
+}
