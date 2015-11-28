@@ -78,7 +78,6 @@ module.exports = {
       Event.findOne({jamBaseId: req.body.Id}, function(err, event) {
         if (event) {
           var notInMyEvents = true;
-
           currentUser.myEvents.forEach(function(myEvent) {
             if (myEvent.eventId.equals(event._id)){
               console.log('This event is already in your myEvents list!');

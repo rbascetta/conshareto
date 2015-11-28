@@ -63,8 +63,6 @@ $(document).ready(function() {
       url: 'api/myattendevents',
       method: 'GET',
     }).done(function(myEvents){
-      console.log('hi');
-      console.log(myEvents);
       $('.wrapper').remove();
       myEvents.forEach(function(event){
         $('body').append(
@@ -74,7 +72,6 @@ $(document).ready(function() {
       $('.unattend').off();
       $('.unattend').on('click', function() {
         var eventId = $(this).attr('data');
-        console.log(eventId);
         var unAttendEvent;
         myEvents.forEach(function(result) {
             if (result._id === eventId) {
@@ -88,7 +85,6 @@ $(document).ready(function() {
         }).done(function(data) {
             console.log(data);
         });
-        console.log(unAttendEvent);
       });
       $('.follow').off();
       $('.follow').on('click', function() {
@@ -110,8 +106,6 @@ $(document).ready(function() {
       url: 'api/myfollowevents',
       method: 'GET',
     }).done(function(myEvents){
-      console.log('hi');
-      console.log(myEvents);
       $('.wrapper').remove();
       myEvents.forEach(function(event){
         $('body').append(
@@ -121,7 +115,6 @@ $(document).ready(function() {
       $('.unfollow').off();
       $('.unfollow').on('click', function() {
         var eventId = $(this).attr('data');
-        console.log(eventId);
         var unFollowEvent;
         myEvents.forEach(function(result) {
             if (result._id === eventId) {
@@ -135,12 +128,10 @@ $(document).ready(function() {
         }).done(function(data) {
             console.log(data);
         });
-        console.log(unFollowEvent);
       });
       $('.attend').off();
       $('.attend').on('click', function() {
         var jamId = $(this).attr('data');
-        console.log(jamId);
         $.ajax({
           url: '/api/attendevent',
           method: 'POST',
