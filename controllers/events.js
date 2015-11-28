@@ -118,24 +118,31 @@ module.exports = {
     });
   },
 
-  unattendEvent: function(req, res) {
-    req.user.myEvents.forEach(function(event) {
-      if (event.eventId === req.id) {
-        event.attending = false;
-      }
+  unAttendEvent: function(req, res) {
+    User.findById(req.user.id, function(err, currentUser) {
+      currentUser.myEvents.forEach(function(event) {
+        if (event.eventId.equals(req.body._id)) {
+          event.attending = false;
+          currentUser.save(function(err) {
+            res.json(event);
+          });
+        }
+      });
     });
   },
 
-  unfollowEvent: function(req, res) {
-    req.user.myEvents.forEach(function(event) {
-      if (event.eventId === req.id) {
-        event.following = false;
-      }
+  unFollowEvent: function(req, res) {
+    User.findById(req.user.id, function(err, currentUser) {
+      currentUser.myEvents.forEach(function(event) {
+        if (event.eventId.equals(req.body._id)) {
+          event.following = false;
+          currentUser.save(function(err) {
+            res.json(event);
+          });
+        }
+      });
     });
-  // },
-
-  // currentEvent: function(req, res) {
-  //   res.send(body);
   }
+
 
 };

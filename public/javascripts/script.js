@@ -23,9 +23,9 @@ $(document).ready(function() {
         console.log(jamId);
         var attendEvent;
         searchResults.forEach(function(result) {
-            if (result.Id == jamId) {
-                attendEvent = result;
-            }
+          if (result.Id == jamId) {
+              attendEvent = result;
+          }
         });
         console.log(attendEvent);
         $.ajax({
@@ -71,6 +71,25 @@ $(document).ready(function() {
           attendEventTemplate({event: event})
         );
       });
+      $('.unattend').off();
+      $('.unattend').on('click', function() {
+        var eventId = $(this).attr('data');
+        console.log(eventId);
+        var unAttendEvent;
+        myEvents.forEach(function(result) {
+            if (result._id === eventId) {
+              unAttendEvent = result;
+            }
+        });
+        $.ajax({
+          url: '/api/unattendevent',
+          method: 'Post',
+          data: unAttendEvent
+        }).done(function(data) {
+            console.log(data);
+        });
+        console.log(unAttendEvent);
+      });
     });
   });
   $('#myFollowButton').off();
@@ -86,6 +105,25 @@ $(document).ready(function() {
         $('body').append(
           followEventTemplate({event: event})
         );
+      });
+      $('.unfollow').off();
+      $('.unfollow').on('click', function() {
+        var eventId = $(this).attr('data');
+        console.log(eventId);
+        var unFollowEvent;
+        myEvents.forEach(function(result) {
+            if (result._id === eventId) {
+              unFollowEvent = result;
+            }
+        });
+        $.ajax({
+          url: '/api/unfollowevent',
+          method: 'Post',
+          data: unFollowEvent
+        }).done(function(data) {
+            console.log(data);
+        });
+        console.log(unFollowEvent);
       });
     });
   });

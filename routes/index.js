@@ -93,6 +93,10 @@ module.exports = function(app, passport) {
 
   router.post('/followevent', isLoggedIn, eventController.followEvent);
 
+  router.post('/unattendevent', isLoggedIn, eventController.unAttendEvent);
+
+  router.post('/unfollowevent', isLoggedIn, eventController.unFollowEvent);
+
   app.use('/api', router);
 
 }

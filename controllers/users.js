@@ -13,7 +13,7 @@ module.exports = {
   myAttendEvents: function (req, res) {
     var myEventObjects = [];
     var myEvents = req.user.myEvents;
-    var myAttendEvents = myEvents.filter(function(object, index){ return (myEvents[index].attending === true); })
+    var myAttendEvents = myEvents.filter(function(object, index){ return (myEvents[index].attending === true); });
     for (var i = 0; i < myAttendEvents.length; i++) {
       Event.findOne({_id: myAttendEvents[i].eventId}, function (err, event) {
         myEventObjects.push(event);
@@ -27,7 +27,7 @@ module.exports = {
    myFollowEvents: function (req, res) {
     var myEventObjects = [];
     var myEvents = req.user.myEvents;
-    var myAttendEvents = myEvents.filter(function(object, index){ return (myEvents[index].following === true); })
+    var myAttendEvents = myEvents.filter(function(object, index){ return (myEvents[index].following === true); });
     for (var i = 0; i < myAttendEvents.length; i++) {
       Event.findOne({_id: myAttendEvents[i].eventId}, function (err, event) {
         myEventObjects.push(event);
