@@ -34,6 +34,25 @@ $(document).ready(function() {
             console.log(data);
         });
       });
+      $('.follow').off();
+      $('.follow').on('click', function() {
+        var jamId = $(this).attr('data');
+        console.log(jamId);
+        var followEvent;
+        searchResults.forEach(function(result) {
+            if (result.Id == jamId) {
+                followEvent = result;
+            }
+        });
+        console.log(followEvent);
+        $.ajax({
+          url: '/api/followevent',
+          method: 'POST',
+          data: followEvent
+        }).done(function(data) {
+            console.log(data);
+        });
+      });
     });
   });
   $('#myeventbutton').off();
