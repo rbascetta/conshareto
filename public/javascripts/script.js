@@ -2,6 +2,7 @@ var searchResults=[];
 
 $(document).ready(function() {
   var eventTemplate = _.template($("#event-template").html());
+  var myeventTemplate = _.template($("#myevent-template").html());
   $('#event_search').on('click', function(el){
     $.ajax({
       url: '/search',
@@ -33,6 +34,25 @@ $(document).ready(function() {
             console.log(data);
         });
       });
+      $('.follow').off();
+      $('.follow').on('click', function() {
+        var jamId = $(this).attr('data');
+        console.log(jamId);
+        var followEvent;
+        searchResults.forEach(function(result) {
+            if (result.Id == jamId) {
+                followEvent = result;
+            }
+        });
+        console.log(followEvent);
+        $.ajax({
+          url: '/api/followevent',
+          method: 'POST',
+          data: followEvent
+        }).done(function(data) {
+            console.log(data);
+        });
+      });
     });
   });
   $('#myeventbutton').off();
@@ -40,10 +60,12 @@ $(document).ready(function() {
     $.ajax({
       url: 'api/myevents',
       method: 'GET',
-    }).done(function(events){
-      events.forEach(function(event){
+    }).done(function(myEvents){
+      console.log('hi');
+      console.log(myEvents);
+      myEvents.forEach(function(event){
         $('body').append(
-          eventTemplate({event: event})
+          myeventTemplate({event: event})
         );
       });
     });
