@@ -78,6 +78,7 @@ $(document).ready(function() {
               unAttendEvent = result;
             }
         });
+        $(this).parent().parent().parent().parent().parent().parent().parent().remove();
         $.ajax({
           url: '/api/unattendevent',
           method: 'Post',
@@ -90,6 +91,7 @@ $(document).ready(function() {
       $('.follow').on('click', function() {
         var jamId = $(this).attr('data');
         console.log(jamId);
+        $(this).parent().parent().parent().parent().parent().parent().parent().remove();
         $.ajax({
           url: '/api/followevent',
           method: 'POST',
@@ -121,6 +123,7 @@ $(document).ready(function() {
               unFollowEvent = result;
             }
         });
+        $(this).parent().parent().parent().parent().parent().parent().parent().remove();
         $.ajax({
           url: '/api/unfollowevent',
           method: 'Post',
@@ -132,6 +135,8 @@ $(document).ready(function() {
       $('.attend').off();
       $('.attend').on('click', function() {
         var jamId = $(this).attr('data');
+        console.log($(this).attr('data'));
+        $(this).parent().parent().parent().parent().parent().parent().parent().remove();
         $.ajax({
           url: '/api/attendevent',
           method: 'POST',

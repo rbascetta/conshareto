@@ -31,7 +31,7 @@ module.exports = {
               myEvent.attending = true;
               myEvent.following = false;
               currentUser.save(function(err) {
-                res.json(currentUser.myEvents);
+                res.json(myEvent);
               });
             }
           });
@@ -75,7 +75,9 @@ module.exports = {
   followEvent: function(req, res) {
     console.log('The usery user is: ' + req.user.firstName + ' ' + req.user.id);
     User.findById(req.user.id, function(err, currentUser) {
+      console.log('the jambase id is ' + req.body.Id);
       Event.findOne({jamBaseId: req.body.Id}, function(err, event) {
+        console.log('the event found is', event);
         if (event) {
           var notInMyEvents = true;
           currentUser.myEvents.forEach(function(myEvent) {
