@@ -10,6 +10,7 @@ $(document).ready(function() {
       data: {zip: $('#zip_search').val()}
     }).done(function(events){
       searchResults = events;
+      $('.wrapper').remove();
       events.forEach(function(event){
         $('body').append(
           eventTemplate({event: event})
@@ -63,6 +64,7 @@ $(document).ready(function() {
     }).done(function(myEvents){
       console.log('hi');
       console.log(myEvents);
+      $('.wrapper').remove();
       myEvents.forEach(function(event){
         $('body').append(
           myeventTemplate({event: event})

@@ -18,7 +18,10 @@
 
       <!-- EXTRA BUTTON FOR TESTING -->
       <div class="row col-md-4" style="padding: 15px">
-        <button type="button" class="btn btn-primary" id="myeventbutton">My Events</button>
+        <% if (user) { %>
+          <button type="button" class="btn btn-primary" id="myeventbutton">My Events</button>
+          <span style="color: #4174b9; font-size:20px"> You are attending <%= user.myEvents.length %> events </span>
+        <% } %>
       </div>
 
 
