@@ -147,19 +147,6 @@ $(document).ready(function() {
       });
     });
   });
-
-
-
-  // $('#moreinfo').on('click', function(el){
-  //   $.ajax({
-  //     url: '/eventinfo',
-  //     method: 'GET',
-  //     data: { event: $('#moreinfo').parent().val() }
-  //   }).done(function(data) {
-  //       console.log(data);
-  //   });
-  // })
-
 });
 
 
