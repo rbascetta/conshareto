@@ -3,7 +3,7 @@
   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <!-- <div class="collapse navbar-collapse"> -->
 
-      <div class="col-md-4">
+      <div class="col-md-5">
         <ul class="nav navbar-nav">
           <li><a href="/"><img src="images/conshareto_final_white.png" width="150"></a></li>
           <li style="padding: 7px">
@@ -17,8 +17,11 @@
       </div>
 
       <!-- EXTRA BUTTON FOR TESTING -->
-      <div class="row col-md-4" style="padding: 15px">
-        <button type="button" class="btn btn-primary" id="myeventbutton">My Events</button>
+      <div class="row col-md-3" style="padding: 15px">
+        <% if (user) { %>
+          <button type="button" class="btn btn-primary" id="myeventbutton">My Events</button>
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;You are attending <%= user.myEvents.length %> events.</span>
+        <% } %>
       </div>
 
 
