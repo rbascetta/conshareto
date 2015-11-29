@@ -1,6 +1,11 @@
 var searchResults=[];
 
 $(document).ready(function() {
+
+  function blah() {
+    return "blah";
+  }
+
   var eventTemplate = _.template($("#event-template").html());
   var attendEventTemplate = _.template($("#attend-event-template").html());
   var followEventTemplate = _.template($("#follow-event-template").html());
@@ -147,6 +152,8 @@ $(document).ready(function() {
       });
     });
   });
+
+
 
   // $('#moreinfo').on('click', function(el){
   //   $.ajax({
