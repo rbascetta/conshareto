@@ -2,10 +2,6 @@ var searchResults=[];
 
 $(document).ready(function() {
 
-  function blah() {
-    return "blah";
-  }
-
   var eventTemplate = _.template($("#event-template").html());
   var attendEventTemplate = _.template($("#attend-event-template").html());
   var followEventTemplate = _.template($("#follow-event-template").html());
@@ -38,7 +34,9 @@ $(document).ready(function() {
           method: 'POST',
           data: attendEvent
         }).done(function(data) {
-            console.log(data);
+            console.log('browser side ', data);
+            $('#numAttending').html('( '+ attendCounter(data) + ' )');
+            $('#numFollowing').html('( '+ followCounter(data) + ' )');
         });
       });
       $('.follow').off();
@@ -58,6 +56,8 @@ $(document).ready(function() {
           data: followEvent
         }).done(function(data) {
             console.log(data);
+            $('#numFollowing').html('( '+ followCounter(data) + ' )');
+            $('#numAttending').html('( '+ attendCounter(data) + ' )');
         });
       });
     });
@@ -90,6 +90,8 @@ $(document).ready(function() {
           data: unAttendEvent
         }).done(function(data) {
             console.log(data);
+            $('#numAttending').html('( '+ attendCounter(data) + ' )');
+            $('#numFollowing').html('( '+ followCounter(data) + ' )');
         });
       });
       $('.follow').off();
@@ -103,6 +105,8 @@ $(document).ready(function() {
           data: {Id: jamId}
         }).done(function(data) {
             console.log(data);
+            $('#numFollowing').html('( '+ followCounter(data) + ' )');
+            $('#numAttending').html('( '+ attendCounter(data) + ' )');
         });
       });
     });
@@ -135,6 +139,8 @@ $(document).ready(function() {
           data: unFollowEvent
         }).done(function(data) {
             console.log(data);
+            $('#numFollowing').html('( '+ followCounter(data) + ' )');
+            $('#numAttending').html('( '+ attendCounter(data) + ' )');
         });
       });
       $('.attend').off();
@@ -147,7 +153,9 @@ $(document).ready(function() {
           method: 'POST',
           data: {Id: jamId}
         }).done(function(data) {
-            console.log(data);
+            console.log('browser side ', data);
+            $('#numAttending').html('( '+ attendCounter(data) + ' )');
+            $('#numFollowing').html('( '+ followCounter(data) + ' )');
         });
       });
     });
@@ -155,15 +163,33 @@ $(document).ready(function() {
 
 
 
-  // $('#moreinfo').on('click', function(el){
-  //   $.ajax({
-  //     url: '/eventinfo',
-  //     method: 'GET',
-  //     data: { event: $('#moreinfo').parent().val() }
-  //   }).done(function(data) {
-  //       console.log(data);
-  //   });
-  // })
+function attendCounter(myEvents) {
+  var counter = 0;
+  for (var i = 0; i < myEvents.length; i++) {
+    if (myEvents[i].attending === true) {
+      counter++;
+    }
+  }
+  if (counter !== 0){
+    console.log('events attending is ' + counter);
+    return counter;
+  }
+ };
+
+ function followCounter(myEvents) {
+  var counter = 0;
+  for (var i = 0; i < myEvents.length; i++) {
+    if (myEvents[i].following === true) {
+      counter++;
+    }
+  }
+  if (counter !== 0){
+    console.log('events attending is ' + counter);
+    return counter;
+  }
+ };
+
+
 
 });
 

@@ -55,7 +55,7 @@
 
       <div class="modal-body">
         <div id="modalAddress">
-          <h4> <%%= event.venue.address %>, <%%= event.venue.city %>, <%%= event.venue.state %>,  <%%= event.venue.zipCode %></h4>
+          <h4> <%%= event.venue.address %>, <%%= event.venue.city %>, <%%= event.venue.state %>,  <%%= event.venue.zipcode %></h4>
         </div>
         <br>
         <div id="venueURL">
@@ -65,7 +65,7 @@
       <hr>
 
       <div class="modal-footer">
-        <a href='"<%%= event.TicketUrl %>"'><button type="button" class="btn btn-primary" id="buyTicketsBtn">Buy Tickets</button></a>
+        <a href="<%%= event.ticketUrl %>" target="_blank"><button type="button" class="btn btn-primary" id="buyTicketsBtn">Buy Tickets</button></a>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Back to Events Listing</button>
       </div>
 
