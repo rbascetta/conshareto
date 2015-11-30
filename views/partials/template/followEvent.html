@@ -1,30 +1,31 @@
 <script type="text/template" id="follow-event-template">
 
+
 <div class="wrapper">
     <div class="box">
         <div class="row">
 
             <div class="column col-sm-12" id="main">
                 <div class="padding">
-                    <div class="full col-sm-8 col-sm-offset-2" style="background-color: #ffffff; opacity: 0.75; border-radius: 10px">
+                    <div class="full col-sm-8 col-sm-offset-2" id="eventBlock">
 
-                        <div class="row" id="eventBlock">
+                        <div class="row">
                           <div class="col-sm-12" id="blockTop">
                           </div>
                           <div class="col-sm-9">
-                            <h2 class="page-header"><%%= event.artists[0].name %><small>&nbsp;&nbsp;&nbsp;<%%= event.venue.name %></small></h2>
-                            <h3><span class="label label-secondary" style="color:#4174b9"><%%= dateConvert(event.date) %></span></h3>
+                            <h2 class="page-header" style="text-transform: uppercase"><%%= event.artists[0].name %><small style="color: #2e5182">&nbsp;&nbsp;&nbsp;<%%= event.venue.name %></small></h2>
+                            <h3><span class="label label-secondary" id="dateField"><%%= dateConvert(event.date) %></span></h3>
                             <br>
 
-                            <h4 class="text-muted">Time: <%%= timeConvert(event.date) %>&nbsp;&nbsp;&nbsp;
-                              <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal<%%= event._id %>" id="btnModal">More Event Info</button></h4>
+                            <h4 class="text-muted" style="color:black">Time: <%%= timeConvert(event.date) %>&nbsp;&nbsp;&nbsp;
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal<%%= event._id %>" id="btnModal">More Info</button></h4>
 
                           </div>
                           <div class="col-sm-3">
                             <div class="pull-right" id="social_buttons" style="margin-top: 30px">
-                                    <button type="button" class="btn btn-primary hover attend" data="<%%= event.jamBaseId %>" id="btnAttend">Attend Event</button>
-                                    <hr>
-                                    <button type="button" class="btn btn-secondary unfollow" data="<%%= event._id %>" id="btnunFollow" style="width:110px">unFollow</button>
+                              <button type="button" class="btn btn-primary hover attend" data="<%%= event.jamBaseId %>" id="btnAttend">Attend Event</button>
+                              <hr>
+                              <button type="button" class="btn btn-secondary unfollow" data="<%%= event._id %>" id="btnunFollow" style="width:110px">unFollow</button>
                             </div>
                           </div>
                           <div class="col-sm-12" id="blockBottom">
@@ -37,10 +38,9 @@
             <br>
         </div>
     </div>
-<hr width="500">
 </div>
 
-<div class="modal fade" id="myModal<%%=event._id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal<%%=event._id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
    <div class="modal-dialog" role="document">
     <div class="modal-content">
 
@@ -49,23 +49,21 @@
           <span aria-hidden="true">&times;</span>
           <span class="sr-only">Close</span>
         </button>
-        <h3 class="modal-title" id="myModalLabel"> <%%= event.artists[0].name %> <small> <%%= event.venue.name %> | <%%= event.venue.city %></small> </h3>
+        <h3 class="modal-title" id="myModalLabel" style="text-transform: uppercase"> <%%= event.artists[0].name %> <small> <%%= event.venue.name %> | <%%= event.venue.city %></small> </h3>
       </div>
-      <hr>
 
       <div class="modal-body">
         <div id="modalAddress">
-          <h4> <%%= event.venue.address %>, <%%= event.venue.city %>, <%%= event.venue.state %>,  <%%= event.venue.zipCode %></h4>
+          <h4 style="color: #2e5182"> <%%= event.venue.address %></h4>
+          <h4 style="color: #2e5182"> <%%= event.venue.city %>, <%%= event.venue.state %>,  <%%= event.venue.zipcode %></h4>
         </div>
-        <br>
         <div id="venueURL">
-          <h4> <%%= event.venue.venueUrl %> </h4>
+          <h4 style="color: #0889f1"><a href="<%%= event.venue.venueUrl %>" target="_blank"> <%%= event.venue.venueUrl %> </a></h4>
         </div>
       </div>
-      <hr>
 
       <div class="modal-footer">
-        <a href='"<%%= event.TicketUrl %>"'><button type="button" class="btn btn-primary" id="buyTicketsBtn">Buy Tickets</button></a>
+        <a href='"<%%= event.ticketUrl %>"'><button type="button" class="btn btn-primary" id="buyTicketsBtn">Buy Tickets</button></a>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Back to Events Listing</button>
       </div>
 

@@ -7,18 +7,18 @@
 
             <div class="column col-sm-12" id="main">
                 <div class="padding">
-                    <div class="full col-sm-8 col-sm-offset-2" style="background-color: #ffffff; opacity: 0.75; border-radius: 10px">
+                    <div class="full col-sm-8 col-sm-offset-2" id="eventBlock">
 
-                        <div class="row" id="eventBlock">
+                        <div class="row">
                           <div class="col-sm-12" id="blockTop">
                           </div>
                           <div class="col-sm-9">
-                            <h2 class="page-header"><%%= event.Artists[0].Name %><small>&nbsp;&nbsp;&nbsp;<%%= event.Venue.Name %></small></h2>
-                            <h3><span class="label label-secondary" style="color:#4174b9"><%%= dateConvert(event.Date) %></span></h3>
+                            <h2 class="page-header" style="text-transform: uppercase"><%%= event.Artists[0].Name %><small style="color: #2e5182">&nbsp;&nbsp;&nbsp;<%%= event.Venue.Name %></small></h2>
+                            <h3><span class="label label-secondary" id="dateField"><%%= dateConvert(event.Date) %></span></h3>
                             <br>
 
-                            <h4 class="text-muted">Time: <%%= timeConvert(event.Date) %>&nbsp;&nbsp;&nbsp;
-                              <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal<%%= event.Id %>" id="btnModal">More Event Info</button></h4>
+                            <h4 class="text-muted" style="color:black">Time: <%%= timeConvert(event.Date) %>&nbsp;&nbsp;&nbsp;
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal<%%= event.Id %>" id="btnModal">More Info</button></h4>
 
                           </div>
                           <div class="col-sm-3">
@@ -38,11 +38,10 @@
             <br>
         </div>
     </div>
-<hr width="500">
 </div>
 
-<div class="modal fade" id="myModal<%%=event.Id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-   <div class="modal-dialog" role="document">
+<div class="modal fade" id="myModal<%%=event.Id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
 
       <div class="modal-header">
@@ -50,17 +49,16 @@
           <span aria-hidden="true">&times;</span>
           <span class="sr-only">Close</span>
         </button>
-        <h3 class="modal-title" id="myModalLabel"> <%%= event.Artists[0].Name %> <small> <%%= event.Venue.Name %> | <%%= event.Venue.City %></small> </h3>
+        <h3 class="modal-title" id="myModalLabel" style="text-transform: uppercase"> <%%= event.Artists[0].Name %> <small> <%%= event.Venue.Name %> | <%%= event.Venue.City %></small> </h3>
       </div>
-      <hr>
 
       <div class="modal-body">
         <div id="modalAddress">
-          <h4> <%%= event.Venue.Address %>, <%%= event.Venue.City %>, <%%= event.Venue.StateCode %>,  <%%= event.Venue.ZipCode %></h4>
+          <h4 style="color: #2e5182"> <%%= event.Venue.Address %></h4>
+          <h4 style="color: #2e5182"> <%%= event.Venue.City %>, <%%= event.Venue.StateCode %>,  <%%= event.Venue.ZipCode %></h4>
         </div>
-        <br>
         <div id="venueURL">
-          <h4> <%%= event.Venue.Url %> </h4>
+          <h4 style="color: #0889f1"><a href="<%%= event.Venue.Url %>" target="_blank"> <%%= event.Venue.Url %> </a></h4>
         </div>
       </div>
 

@@ -125,6 +125,7 @@ $('#zip_search').on("keyup",function(e){
       $('.wrapper').remove();
 
       myEvents.forEach(function(event){
+        console.log(event);
         $('body').append(
           followEventTemplate({event: event})
         );

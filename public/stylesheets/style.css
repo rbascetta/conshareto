@@ -6,6 +6,33 @@ body {
   background-size: cover;
 }
 
+#myAttendButton {
+  background-color: #4174b9;
+  transition: all 0.3s ease 0s;
+  border-color: black;
+}
+
+#myAttendButton:hover {
+  background: #000000;
+  color: white;
+}
+
+#myFollowButton {
+  background-image: url(https://i.imgur.com/NNtUD08.png);
+  transition: all 0.3s ease 0s;
+  border-color: black;
+  color: black;
+}
+
+#myFollowButton:hover {
+  background: #000000;
+  color: white;
+}
+
+.wrapper {
+  padding-bottom: 20px;
+}
+
 .text-center h1 {
   background-image: url(https://i.imgur.com/0Kyu8ea.png); }
 
@@ -15,17 +42,103 @@ body {
   margin-bottom: 0px;
 }
 
-#titleImage {
-  margin-top: 100px;
+#dateField {
+  color: white;
+  text-transform: uppercase;
+  font-family: Futura;
 }
 
-#btnModal {
-  width: 150px;
-  background-image: url(https://i.imgur.com/UoE80hr.png);
-  background-position: center;
+#titleImage {
+  margin-top: 100px;
 }
 
 #blockTop {
   position: center;
   background-image: url(https://i.imgur.com/6E94ROD.png) no-repeat;
+}
+
+#eventBlock {
+  background-image: url(https://i.imgur.com/MVvQJS6.png);
+  border-color: #ffffff;
+  border-style: ridge;
+  border-width: 3px;
+  font-family: Gill Sans;
+}
+
+#btnAttend {
+  background-color: #4174b9;
+  transition: all 0.3s ease 0s;
+  border-color: black;
+}
+
+#btnUnAttend {
+  background-color: #4174b9;
+  transition: all 0.3s ease 0s;
+  border-color: black;
+}
+
+#btnAttend:hover {
+  background: #000000;
+  color: white;
+}
+
+#btnUnAttend:hover {
+  background: #000000;
+  color: white;
+}
+
+#btnFollow {
+  background-image: url(https://i.imgur.com/NNtUD08.png);
+  transition: all 0.3s ease 0s;
+  border-color: black;
+}
+
+#btnunFollow {
+  background-image: url(https://i.imgur.com/NNtUD08.png);
+  transition: all 0.3s ease 0s;
+  border-color: black;
+}
+
+#btnFollow:hover {
+  background: #000000;
+  color: white;
+}
+
+#btnunFollow:hover {
+  background: #000000;
+  color: white;
+}
+
+#btnRevise {
+  background-image: url(https://i.imgur.com/NNtUD08.png);
+  color: #000000;
+  border-color: black;
+}
+
+#btnRevise:hover {
+  background: #ffffff;
+}
+
+
+#btnModal {
+  width: 150px;
+  background-image: url(https://i.imgur.com/aY2Xpif.png);
+  background-position: center;
+  transition: all 0.3s ease 0s;
+  border-color: black;
+}
+
+#btnModal:hover {
+  background: #000000;
+}
+
+.modal {
+  background: rgba(000, 000, 000, 0.6);
+  min-height:1000000px;
+  font-family: Gill Sans;
+}
+
+.btn:hover {
+  background: #000000;
+  color: white;
 }
