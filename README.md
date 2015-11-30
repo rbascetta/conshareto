@@ -21,7 +21,7 @@ Note: These roles are loose as we all have a hand in everything.
 - <a href="https://trello.com/b/8NnxlvTx/conshareto">Trello</a>
 - <a href="https://github.com/wingedearth/conshareto">Github</a>
 
-## Presentation
+## Presentationn
 
 <iframe id="iframe_container" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" width="550" height="400" src="https://prezi.com/embed/lcgdwibbdh2o/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;landing_data=bHVZZmNaNDBIWnNjdEVENDRhZDFNZGNIUE43MHdLNWpsdFJLb2ZHanI5KzJDY0E0WTg3eXVLU3Y0UU1SeFZoa0VBPT0&amp;landing_sign=lDJ7LlmmOzfHHyn3TTwUdymyZ4Uh9a9HnPCu_t0Wglk"></iframe>
 
@@ -109,5 +109,12 @@ Artist Data:
 ## User Stories, Sprint, Icebox
 See <a href="https://trello.com/b/8NnxlvTx/conshareto">Trello</a>
 
+#### MVP User Stories
+- As a user I want to be able to login using Google.
+- As a user I want to be able to search for concerts by zipcode and be able to set a parameter from that zipcode to filter my results.
+- As a user I want to see the results of concerts happening in my area.
+- As a user I want to be able to either follow or attend an event.
+- As a user I want to be able to see which events I'm following and which events i'm attending.
+- As a user I want to be able to unfollow or unattend an event and have my personal list of which concerts I am attending and following be automatically updated.
 
 
