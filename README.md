@@ -1,4 +1,5 @@
-# conshareto
+
+<center><img src="https://conshareto.herokuapp.com/images/conshareto_blue_updated.png" width=350></center>
 
 ## Summary
 Music lovers can search for and track upcoming local music events with a simple, no bs web app: 
@@ -21,7 +22,7 @@ Note: These roles are loose as we all have a hand in everything.
 - <a href="https://trello.com/b/8NnxlvTx/conshareto">Trello</a>
 - <a href="https://github.com/wingedearth/conshareto">Github</a>
 
-## Presentationn
+## Presentation
 
 <iframe id="iframe_container" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" width="550" height="400" src="https://prezi.com/embed/lcgdwibbdh2o/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;landing_data=bHVZZmNaNDBIWnNjdEVENDRhZDFNZGNIUE43MHdLNWpsdFJLb2ZHanI5KzJDY0E0WTg3eXVLU3Y0UU1SeFZoa0VBPT0&amp;landing_sign=lDJ7LlmmOzfHHyn3TTwUdymyZ4Uh9a9HnPCu_t0Wglk"></iframe>
 
@@ -84,7 +85,7 @@ Event Data:
 <ul>
 <li>Artists [Artist Data]</li>
 <li>Date</li>
-<li>Venue [Venue Data]</li>
+<li>Venue {Venue Data}</li>
 <li>Ticket Url</li>
 </ul>
 
@@ -102,8 +103,35 @@ Venue Data:
 Artist Data:
 <ul>
 <li>Name</li>
-<li>uri</li>
 </ul>
+
+## RESTful API
+Conshareto's API provides simple methods for creating events in a hosted online database, for creating user documents based on authenticated user logins, and for creating and uncreating "attending" and "following" relationships between users and events. 
+
+The following are GET routes that allow a user to get a list of data on events that the user is attending or following, respectfully:
+
+<ul>
+    <li>router.get('/myattendevents', isLoggedIn, userController.myAttendEvents);</li>
+    <li>router.get('/myfollowevents', isLoggedIn, userController.myFollowEvents);</li>
+</ul>
+
+The following are POST routes allowing a user to create new events in the hosted database (if the events are not already created), or to create a new kind of relationship between a user and such events: 
+
+<ul>
+     <li> router.post('/attendevent', isLoggedIn, eventController.attendEvent); </li>
+     <li> router.post('/followevent', isLoggedIn, eventController.followEvent); </li>
+</ul>
+
+The application allows a user to delete events from their own view using "unAttend" or "unFollow" as applicable, while continuing to store and persist the event information in the hosted database even where a user has removed it. An icebox feature will allow users to view previously attended events after the event takes place and/or is removed from the standard attend/follow views. The following routes implement the client-side removal of event information from their view:
+
+<ul>
+     <li> router.post('/unattendevent', isLoggedIn, eventController.unAttendEvent); </li>
+     <li> router.post('/unfollowevent', isLoggedIn, eventController.unFollowEvent); </li>
+</ul>
+
+The following route is used for Google login/authentication of a user, but also provides POST funcationality to create a new user in the application's hosted database if the user is not already in the database:
+
+<ul><li>app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));</li></ul>
 
 
 ## User Stories, Sprint, Icebox
