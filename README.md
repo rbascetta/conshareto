@@ -1,4 +1,5 @@
-# conshareto
+
+<center><img src="https://conshareto.herokuapp.com/images/conshareto_blue_updated.png" width=350></center>
 
 ## Summary
 Music lovers can search for and track upcoming local music events with a simple, no bs web app: 
