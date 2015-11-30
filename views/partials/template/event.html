@@ -21,6 +21,7 @@
                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal<%%= event.Id %>" id="btnModal">More Info</button></h4>
 
                           </div>
+                          <% if (user) { %>
                           <div class="col-sm-3">
                             <div class="pull-right" id="social_buttons" style="margin-top: 30px">
                               <button type="button" class="btn btn-primary hover attend" data="<%%=event.Id %>" id="btnAttend">Attend Event</button>
@@ -28,6 +29,7 @@
                               <button type="button" class="btn btn-secondary follow" data="<%%=event.Id %>" id="btnFollow" style="width:110px">Follow</button>
                             </div>
                           </div>
+                          <% } %>
                           <div class="col-sm-12" id="blockBottom">
                           </div>
                         </div>
