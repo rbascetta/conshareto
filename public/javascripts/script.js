@@ -2,18 +2,16 @@ var searchResults=[];
 
 $(document).ready(function() {
 
-  function blah() {
-    return "blah";
-  }
-
   var eventTemplate = _.template($("#event-template").html());
   var attendEventTemplate = _.template($("#attend-event-template").html());
   var followEventTemplate = _.template($("#follow-event-template").html());
+
+  // Main search button on navbar
   $('#event_search').on('click', function(el){
     $.ajax({
       url: '/search',
       method: 'POST',
-      data: {zip: $('#zip_search').val()}
+      data: {zip: $('#zip_search').val(), radius: $('#drop_radius').val()}
     }).done(function(events){
       searchResults = events;
       $('.wrapper').remove();
@@ -147,6 +145,14 @@ $(document).ready(function() {
       });
     });
   });
+
+  // Make the dropdown search button functional
+  // $('#filter_eventSearch').off();
+  // $('#filter_eventSearch').on('click', function(){
+  //   $("#event_search").trigger('click');
+  // });
+
+
 });
 
 

@@ -20,23 +20,7 @@
       <div class="row col-md-4" style="padding: 15px">
         <% if (user) { %>
           <button type="button" class="btn btn-primary" id="myAttendButton">
-            Attending<br>
-
-
-<!--
-            <% if (user.myEvents) { %> (
-              <script>
-              <% user.myEvents %>
-              <%%= attendCounter(); %>
-              </script>
-
-            <% } %>
-            )
--->
-
-
-
-          </button> &nbsp;&nbsp;&nbsp;&nbsp;
+            Attending</button> &nbsp;&nbsp;&nbsp;&nbsp;
           <button type="button" class="btn btn-primary" id="myFollowButton">Following</button> &nbsp;&nbsp;&nbsp;&nbsp;
 
         <% } %>
@@ -58,11 +42,11 @@
                                 <div class="form-group">
                                   <label style="min-width: 250px">Filter by Radius (miles)</label>
                                   <select class="form-control" id="drop_radius">
-                                      <option value="0" selected>Choose Distance</option>
-                                      <option value="1">Within 5 Miles</option>
-                                      <option value="2">Within 10 Miles</option>
-                                      <option value="3">Within 20 Miles</option>
-                                      <option value="4">Within 30 Miles</option>
+                                      <option value="10" selected>Choose Distance</option>
+                                      <option value="5">Within 5 Miles</option>
+                                      <option value="10">Within 10 Miles</option>
+                                      <option value="20">Within 20 Miles</option>
+                                      <option value="50">Within 50 Miles</option>
                                   </select>
                                 </div>
                                 <div class="form-group">
@@ -73,7 +57,6 @@
                                   <label for="contain">Genre</label>
                                   <input class="form-control" id="genre_field" type="text" />
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-lg" id="filter_eventSearch"><span class="glyphicon glyphicon-music" aria-hidden="true"></span></button>
                               </form>
                           </div>
                       </div>
