@@ -8,6 +8,13 @@ $(document).ready(function() {
     }
   });
 
+  $('#special').on('click', function(el) {
+    $(this).append('<audio id="music" src="http://www.ygnacio69.com/media/17_Birthday.mp3" autoplay> </audio>');
+    $('#stop-happy').on('click', function(el) {
+      $('#music').remove();
+    });
+  });
+
   var eventTemplate = _.template($("#event-template").html());
   var attendEventTemplate = _.template($("#attend-event-template").html());
   var followEventTemplate = _.template($("#follow-event-template").html());
