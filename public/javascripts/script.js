@@ -2,10 +2,6 @@ var searchResults=[];
 
 $(document).ready(function() {
 
-  function blah() {
-    return "blah";
-  }
-
   var eventTemplate = _.template($("#event-template").html());
   var attendEventTemplate = _.template($("#attend-event-template").html());
   var followEventTemplate = _.template($("#follow-event-template").html());
@@ -13,7 +9,7 @@ $(document).ready(function() {
     $.ajax({
       url: '/search',
       method: 'POST',
-      data: {zip: $('#zip_search').val()}
+      data: {zip: $('#zip_search').val(), radius: $('#drop_radius').val()}
     }).done(function(events){
       searchResults = events;
       $('.wrapper').remove();
