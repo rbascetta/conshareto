@@ -80,8 +80,8 @@ $(document).ready(function() {
             $('#numFollowing').html('( '+ followCounter(data) + ' )');
             $('#numAttending').html('( '+ attendCounter(data) + ' )');
         });
-        music();
       });
+      music();
     });
   });
   $('#myAttendButton').off();
@@ -132,8 +132,8 @@ $(document).ready(function() {
             $('#numFollowing').html('( '+ followCounter(data) + ' )');
             $('#numAttending').html('( '+ attendCounter(data) + ' )');
         });
-        music();
       });
+      music();
     });
   });
   $('#myFollowButton').off();
@@ -186,8 +186,8 @@ $(document).ready(function() {
             $('#numAttending').html('( '+ attendCounter(data) + ' )');
             $('#numFollowing').html('( '+ followCounter(data) + ' )');
         });
-        music();
       });
+      music();
     });
   });
 
