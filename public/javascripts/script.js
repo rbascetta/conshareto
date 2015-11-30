@@ -8,15 +8,16 @@ $('#zip_search').on("keyup",function(e){
      }
   });
 
-
   var eventTemplate = _.template($("#event-template").html());
   var attendEventTemplate = _.template($("#attend-event-template").html());
   var followEventTemplate = _.template($("#follow-event-template").html());
+
+  // Main search button on navbar
   $('#event_search').on('click', function(el){
     $.ajax({
       url: '/search',
       method: 'POST',
-      data: {zip: $('#zip_search').val()}
+      data: {zip: $('#zip_search').val(), radius: $('#drop_radius').val()}
     }).done(function(events){
       $('#lead1').text("Here are your search results!" );
       $('#lead2').text(" ");
@@ -158,6 +159,7 @@ $('#zip_search').on("keyup",function(e){
       });
     });
   });
+
 });
 
 

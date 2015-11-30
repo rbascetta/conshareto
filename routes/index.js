@@ -48,6 +48,8 @@ module.exports = function(app, passport) {
     uri = baseUri + distParams + dateParams + jamKey;
 
     console.log("Attempting to connect to: ", uri);
+    console.log("radius: ", radius);
+    console.log("zip: ", zip);
 
     // send http request to the Jambase API
     request.get(uri, function(err, response, body) {

@@ -20,23 +20,7 @@
       <div class="row col-md-4" style="padding: 15px">
         <% if (user) { %>
           <button type="button" class="btn btn-primary" id="myAttendButton">
-            Attending<br>
-
-
-<!--
-            <% if (user.myEvents) { %> (
-              <script>
-              <% user.myEvents %>
-              <%%= attendCounter(); %>
-              </script>
-
-            <% } %>
-            )
--->
-
-
-
-          </button> &nbsp;&nbsp;&nbsp;&nbsp;
+            Attending</button> &nbsp;&nbsp;&nbsp;&nbsp;
           <button type="button" class="btn btn-primary" id="myFollowButton">Following</button> &nbsp;&nbsp;&nbsp;&nbsp;
 
         <% } %>
@@ -73,7 +57,6 @@
                                   <label for="contain">Genre</label>
                                   <input class="form-control" id="genre_field" type="text" />
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-lg" id="filter_eventSearch"><span class="glyphicon glyphicon-music" aria-hidden="true"></span></button>
                               </form>
                           </div>
                       </div>
