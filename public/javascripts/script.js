@@ -16,7 +16,7 @@ $(document).ready(function() {
         $('#music').remove();
       });
     });
-  }
+  };
   music();
 
   var eventTemplate = _.template($("#event-template").html());
@@ -193,31 +193,31 @@ $(document).ready(function() {
 
 
 
-function attendCounter(myEvents) {
-  var counter = 0;
-  for (var i = 0; i < myEvents.length; i++) {
-    if (myEvents[i].attending === true) {
-      counter++;
+  function attendCounter(myEvents) {
+    var counter = 0;
+    for (var i = 0; i < myEvents.length; i++) {
+      if (myEvents[i].attending === true) {
+        counter++;
+      }
     }
-  }
-  if (counter !== 0){
-    console.log('events attending is ' + counter);
-    return counter;
-  }
- };
+    if (counter !== 0){
+      console.log('events attending is ' + counter);
+      return counter;
+    }
+   };
 
- function followCounter(myEvents) {
-  var counter = 0;
-  for (var i = 0; i < myEvents.length; i++) {
-    if (myEvents[i].following === true) {
-      counter++;
+   function followCounter(myEvents) {
+    var counter = 0;
+    for (var i = 0; i < myEvents.length; i++) {
+      if (myEvents[i].following === true) {
+        counter++;
+      }
     }
-  }
-  if (counter !== 0){
-    console.log('events attending is ' + counter);
-    return counter;
-  }
- };
+    if (counter !== 0){
+      console.log('events attending is ' + counter);
+      return counter;
+    }
+   };
 });
 
 
