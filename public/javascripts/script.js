@@ -74,7 +74,7 @@ $('#zip_search').on("keyup",function(e){
       url: 'api/myattendevents',
       method: 'GET',
     }).done(function(myEvents){
-      $('#lead1').text("Here are the events your are attending." );
+      $('#lead1').text("Here are the events you are attending." );
       $('#lead2').text(" ");
       $('.wrapper').remove();
       myEvents.forEach(function(event){
@@ -115,7 +115,7 @@ $('#zip_search').on("keyup",function(e){
   });
   $('#myFollowButton').off();
   $('#myFollowButton').on('click', function() {
-    $('#lead1').text("Here are the events your are following." );
+    $('#lead1').text("Here are the events you are following." );
     $('#lead2').text(" ");
     $.ajax({
       url: 'api/myfollowevents',
