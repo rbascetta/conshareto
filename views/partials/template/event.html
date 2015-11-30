@@ -40,8 +40,9 @@
     </div>
 </div>
 
-<div class="modal fade" id="myModal<%%=event.Id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
-  <div class="modal-dialog" role="document">
+
+<div class="modal fade" id="myModal<%%=event.Id%>" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
     <div class="modal-content">
 
       <div class="modal-header">
@@ -63,7 +64,7 @@
       </div>
 
       <div class="modal-footer">
-        <a href="<%%= event.TicketUrl %>"><button type="button" class="btn btn-primary" id="buyTicketsBtn">Buy Tickets</button></a>
+        <a href="<%%= event.TicketUrl %>" target="_blank"><button type="button" class="btn btn-primary" id="buyTicketsBtn">Buy Tickets</button></a>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Back to Events Listing</button>
       </div>
 

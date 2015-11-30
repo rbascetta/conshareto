@@ -1,11 +1,11 @@
 var searchResults=[];
 
 $(document).ready(function() {
-$('#zip_search').off();
-$('#zip_search').on("keyup",function(e){
-     if(e.keyCode == 13){
-         $("#event_search").trigger('click');
-     }
+  $('#zip_search').off();
+  $('#zip_search').on("keyup",function(e){
+    if(e.keyCode == 13){
+      $("#event_search").trigger('click');
+    }
   });
 
   var eventTemplate = _.template($("#event-template").html());
@@ -44,8 +44,9 @@ $('#zip_search').on("keyup",function(e){
           method: 'POST',
           data: attendEvent
         }).done(function(data) {
-
-            console.log(data);
+            console.log('browser side ', data);
+            $('#numAttending').html('( '+ attendCounter(data) + ' )');
+            $('#numFollowing').html('( '+ followCounter(data) + ' )');
         });
       });
       $('.follow').off();
@@ -65,6 +66,8 @@ $('#zip_search').on("keyup",function(e){
           data: followEvent
         }).done(function(data) {
             console.log(data);
+            $('#numFollowing').html('( '+ followCounter(data) + ' )');
+            $('#numAttending').html('( '+ attendCounter(data) + ' )');
         });
       });
     });
@@ -92,24 +95,30 @@ $('#zip_search').on("keyup",function(e){
               unAttendEvent = result;
             }
         });
+        $(this).parent().parent().parent().parent().parent().parent().parent().remove();
         $.ajax({
           url: '/api/unattendevent',
           method: 'Post',
           data: unAttendEvent
         }).done(function(data) {
             console.log(data);
+            $('#numAttending').html('( '+ attendCounter(data) + ' )');
+            $('#numFollowing').html('( '+ followCounter(data) + ' )');
         });
       });
       $('.follow').off();
       $('.follow').on('click', function() {
         var jamId = $(this).attr('data');
         console.log(jamId);
+        $(this).parent().parent().parent().parent().parent().parent().parent().remove();
         $.ajax({
           url: '/api/followevent',
           method: 'POST',
           data: {Id: jamId}
         }).done(function(data) {
             console.log(data);
+            $('#numFollowing').html('( '+ followCounter(data) + ' )');
+            $('#numAttending').html('( '+ attendCounter(data) + ' )');
         });
       });
     });
@@ -139,28 +148,62 @@ $('#zip_search').on("keyup",function(e){
               unFollowEvent = result;
             }
         });
+        $(this).parent().parent().parent().parent().parent().parent().parent().remove();
         $.ajax({
           url: '/api/unfollowevent',
           method: 'Post',
           data: unFollowEvent
         }).done(function(data) {
             console.log(data);
+            $('#numFollowing').html('( '+ followCounter(data) + ' )');
+            $('#numAttending').html('( '+ attendCounter(data) + ' )');
         });
       });
       $('.attend').off();
       $('.attend').on('click', function() {
         var jamId = $(this).attr('data');
+        console.log($(this).attr('data'));
+        $(this).parent().parent().parent().parent().parent().parent().parent().remove();
         $.ajax({
           url: '/api/attendevent',
           method: 'POST',
           data: {Id: jamId}
         }).done(function(data) {
-            console.log(data);
+            console.log('browser side ', data);
+            $('#numAttending').html('( '+ attendCounter(data) + ' )');
+            $('#numFollowing').html('( '+ followCounter(data) + ' )');
         });
       });
     });
   });
 
+
+
+function attendCounter(myEvents) {
+  var counter = 0;
+  for (var i = 0; i < myEvents.length; i++) {
+    if (myEvents[i].attending === true) {
+      counter++;
+    }
+  }
+  if (counter !== 0){
+    console.log('events attending is ' + counter);
+    return counter;
+  }
+ };
+
+ function followCounter(myEvents) {
+  var counter = 0;
+  for (var i = 0; i < myEvents.length; i++) {
+    if (myEvents[i].following === true) {
+      counter++;
+    }
+  }
+  if (counter !== 0){
+    console.log('events attending is ' + counter);
+    return counter;
+  }
+ };
 });
 
 

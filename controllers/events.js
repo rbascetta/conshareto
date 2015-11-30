@@ -31,14 +31,14 @@ module.exports = {
               myEvent.attending = true;
               myEvent.following = false;
               currentUser.save(function(err) {
-                res.json(currentUser.myEvents);
+                res.send(currentUser.myEvents);
               });
             }
           });
           if (notInMyEvents) {
             currentUser.myEvents.push({eventId: event._id, attending: true, following: false});
             currentUser.save(function(err) {
-              res.json(currentUser.myEvents);
+              res.send(currentUser.myEvents);
               console.log('The user is saved with a new myEvent: ' + currentUser.myEvents);
             });
           }
@@ -64,7 +64,7 @@ module.exports = {
             currentUser.myEvents.push({eventId: newEvent._id, attending: true, following: false});
             currentUser.save(function(err) {
               console.log('The user and new event are saved. My events are :' + currentUser.myEvents);
-              res.json(currentUser.myEvents);
+              res.send(currentUser.myEvents);
             });
           });
         }
@@ -75,7 +75,9 @@ module.exports = {
   followEvent: function(req, res) {
     console.log('The usery user is: ' + req.user.firstName + ' ' + req.user.id);
     User.findById(req.user.id, function(err, currentUser) {
+      console.log('the jambase id is ' + req.body.Id);
       Event.findOne({jamBaseId: req.body.Id}, function(err, event) {
+        console.log('the event found is', event);
         if (event) {
           var notInMyEvents = true;
           currentUser.myEvents.forEach(function(myEvent) {
@@ -132,7 +134,7 @@ module.exports = {
         if (event.eventId.equals(req.body._id)) {
           event.attending = false;
           currentUser.save(function(err) {
-            res.json(event);
+            res.json(currentUser.myEvents);
           });
         }
       });
@@ -145,7 +147,7 @@ module.exports = {
         if (event.eventId.equals(req.body._id)) {
           event.following = false;
           currentUser.save(function(err) {
-            res.json(event);
+            res.json(currentUser.myEvents);
           });
         }
       });
