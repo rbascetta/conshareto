@@ -6,6 +6,29 @@ body {
   background-size: cover;
 }
 
+#myAttendButton {
+  background-color: #4174b9;
+  transition: all 0.3s ease 0s;
+  border-color: black;
+}
+
+#myAttendButton:hover {
+  background: #000000;
+  color: white;
+}
+
+#myFollowButton {
+  background-image: url(https://i.imgur.com/NNtUD08.png);
+  transition: all 0.3s ease 0s;
+  border-color: black;
+  color: black;
+}
+
+#myFollowButton:hover {
+  background: #000000;
+  color: white;
+}
+
 .wrapper {
   padding-bottom: 20px;
 }
@@ -42,7 +65,18 @@ body {
   border-color: black;
 }
 
+#btnUnAttend {
+  background-color: #4174b9;
+  transition: all 0.3s ease 0s;
+  border-color: black;
+}
+
 #btnAttend:hover {
+  background: #000000;
+  color: white;
+}
+
+#btnUnAttend:hover {
   background: #000000;
   color: white;
 }
@@ -53,7 +87,18 @@ body {
   border-color: black;
 }
 
+#btnunFollow {
+  background-image: url(https://i.imgur.com/NNtUD08.png);
+  transition: all 0.3s ease 0s;
+  border-color: black;
+}
+
 #btnFollow:hover {
+  background: #000000;
+  color: white;
+}
+
+#btnunFollow:hover {
   background: #000000;
   color: white;
 }

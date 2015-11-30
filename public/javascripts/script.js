@@ -113,6 +113,7 @@ $(document).ready(function() {
     }).done(function(myEvents){
       $('.wrapper').remove();
       myEvents.forEach(function(event){
+        console.log(event);
         $('body').append(
           followEventTemplate({event: event})
         );

@@ -18,7 +18,7 @@
                             <br>
 
                             <h4 class="text-muted" style="color:black">Time: <%%= timeConvert(event.date) %>&nbsp;&nbsp;&nbsp;
-                              <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal<%%= event._id %>" id="btnModal">More Info</button></h4>
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal<%%= event._id %>" id="btnModal">More Info</button></h4>
 
                           </div>
                           <div class="col-sm-3">
@@ -38,10 +38,9 @@
             <br>
         </div>
     </div>
-<hr width="500">
 </div>
 
-<div class="modal fade" id="myModal<%%=event.Id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+<div class="modal fade" id="myModal<%%=event._id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
 
@@ -50,22 +49,22 @@
           <span aria-hidden="true">&times;</span>
           <span class="sr-only">Close</span>
         </button>
-        <h3 class="modal-title" id="myModalLabel" style="text-transform: uppercase"> <%%= event.Artists[0].Name %> <small> <%%= event.Venue.Name %> | <%%= event.Venue.City %></small> </h3>
+        <h3 class="modal-title" id="myModalLabel" style="text-transform: uppercase"> <%%= event.artists[0].name %> <small> <%%= event.venue.name %> | <%%= event.venue.city %></small> </h3>
       </div>
       <hr>
 
       <div class="modal-body">
         <div id="modalAddress">
           <br>
-          <h4 style="color: #2e5182"> <%%= event.Venue.Address %>, <%%= event.Venue.City %>, <%%= event.Venue.StateCode %>,  <%%= event.Venue.ZipCode %></h4>
+          <h4 style="color: #2e5182"> <%%= event.venue.address %>, <%%= event.venue.city %>, <%%= event.venue.state %>,  <%%= event.venue.zipcode %></h4>
         </div>
         <div id="venueURL">
-          <h4 style="color: #0889f1"><a href="<%%= event.Venue.Url %>" target="_blank"> <%%= event.Venue.Url %> </a></h4>
+          <h4 style="color: #0889f1"><a href="<%%= event.venue.venueUrl %>" target="_blank"> <%%= event.venue.venueUrl %> </a></h4>
         </div>
       </div>
 
       <div class="modal-footer">
-        <a href='"<%%= event.TicketUrl %>"'><button type="button" class="btn btn-primary" id="buyTicketsBtn">Buy Tickets</button></a>
+        <a href='"<%%= event.ticketUrl %>"'><button type="button" class="btn btn-primary" id="buyTicketsBtn">Buy Tickets</button></a>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Back to Events Listing</button>
       </div>
 
