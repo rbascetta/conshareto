@@ -1,10 +1,13 @@
 var searchResults=[];
 
 $(document).ready(function() {
+$('#zip_search').off();
+$('#zip_search').on("keyup",function(e){
+     if(e.keyCode == 13){
+         $("#event_search").trigger('click');
+     }
+  });
 
-  function blah() {
-    return "blah";
-  }
 
   var eventTemplate = _.template($("#event-template").html());
   var attendEventTemplate = _.template($("#attend-event-template").html());
@@ -15,6 +18,8 @@ $(document).ready(function() {
       method: 'POST',
       data: {zip: $('#zip_search').val()}
     }).done(function(events){
+      $('#lead1').text("Here are your search results!" );
+      $('#lead2').text(" ");
       searchResults = events;
       $('.wrapper').remove();
       events.forEach(function(event){
@@ -38,6 +43,7 @@ $(document).ready(function() {
           method: 'POST',
           data: attendEvent
         }).done(function(data) {
+
             console.log(data);
         });
       });
@@ -68,6 +74,8 @@ $(document).ready(function() {
       url: 'api/myattendevents',
       method: 'GET',
     }).done(function(myEvents){
+      $('#lead1').text("Here are the events your are attending." );
+      $('#lead2').text(" ");
       $('.wrapper').remove();
       myEvents.forEach(function(event){
         $('body').append(
@@ -107,11 +115,14 @@ $(document).ready(function() {
   });
   $('#myFollowButton').off();
   $('#myFollowButton').on('click', function() {
+    $('#lead1').text("Here are the events your are following." );
+    $('#lead2').text(" ");
     $.ajax({
       url: 'api/myfollowevents',
       method: 'GET',
     }).done(function(myEvents){
       $('.wrapper').remove();
+
       myEvents.forEach(function(event){
         $('body').append(
           followEventTemplate({event: event})
