@@ -8,12 +8,15 @@ $(document).ready(function() {
     }
   });
 
+  function music() {
   $('#special').on('click', function(el) {
     $(this).append('<audio id="music" src="http://www.ygnacio69.com/media/17_Birthday.mp3" autoplay> </audio>');
     $('#stop-happy').on('click', function(el) {
       $('#music').remove();
     });
   });
+  }
+  music();
 
   var eventTemplate = _.template($("#event-template").html());
   var attendEventTemplate = _.template($("#attend-event-template").html());
@@ -76,6 +79,7 @@ $(document).ready(function() {
             $('#numFollowing').html('( '+ followCounter(data) + ' )');
             $('#numAttending').html('( '+ attendCounter(data) + ' )');
         });
+        music();
       });
     });
   });
@@ -127,6 +131,7 @@ $(document).ready(function() {
             $('#numFollowing').html('( '+ followCounter(data) + ' )');
             $('#numAttending').html('( '+ attendCounter(data) + ' )');
         });
+        music();
       });
     });
   });
@@ -180,6 +185,7 @@ $(document).ready(function() {
             $('#numAttending').html('( '+ attendCounter(data) + ' )');
             $('#numFollowing').html('( '+ followCounter(data) + ' )');
         });
+        music();
       });
     });
   });
