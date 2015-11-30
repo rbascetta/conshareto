@@ -14,7 +14,7 @@
                           </div>
                           <div class="col-sm-9">
                             <h2 class="page-header" style="text-transform: uppercase"><%%= event.artists[0].name %><small style="color: #2e5182">&nbsp;&nbsp;&nbsp;<%%= event.venue.name %></small></h2>
-                            <h3><span class="label label-secondary" style="color:#2e5182"><%%= dateConvert(event.date) %></span></h3>
+                            <h3><span class="label label-secondary" id="dateField"><%%= dateConvert(event.date) %></span></h3>
                             <br>
 
                             <h4 class="text-muted" style="color:black">Time: <%%= timeConvert(event.date) %>&nbsp;&nbsp;&nbsp;
@@ -51,12 +51,11 @@
         </button>
         <h3 class="modal-title" id="myModalLabel" style="text-transform: uppercase"> <%%= event.artists[0].name %> <small> <%%= event.venue.name %> | <%%= event.venue.city %></small> </h3>
       </div>
-      <hr>
 
       <div class="modal-body">
         <div id="modalAddress">
-          <br>
-          <h4 style="color: #2e5182"> <%%= event.venue.address %>, <%%= event.venue.city %>, <%%= event.venue.state %>,  <%%= event.venue.zipcode %></h4>
+          <h4 style="color: #2e5182"> <%%= event.venue.address %></h4>
+          <h4 style="color: #2e5182"> <%%= event.venue.city %>, <%%= event.venue.state %>,  <%%= event.venue.zipcode %></h4>
         </div>
         <div id="venueURL">
           <h4 style="color: #0889f1"><a href="<%%= event.venue.venueUrl %>" target="_blank"> <%%= event.venue.venueUrl %> </a></h4>

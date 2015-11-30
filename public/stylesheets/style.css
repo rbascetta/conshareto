@@ -42,6 +42,12 @@ body {
   margin-bottom: 0px;
 }
 
+#dateField {
+  color: white;
+  text-transform: uppercase;
+  font-family: Futura;
+}
+
 #titleImage {
   margin-top: 100px;
 }
