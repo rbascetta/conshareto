@@ -60,50 +60,53 @@ See <a href="https://trello.com/b/8NnxlvTx/conshareto">Trello</a>
 
 ## Data Models
 
-####<u>User</u>
-User Data:
-<ul>
-<li>First Name</li>
-<li>Last Name</li>
-<li>Email</li>
-<li>My Events [My Events Data]</li>
-<li>Google ID</li>
-<li>Facebook Id</li>
-<li>Profile Image Url</li>
-<li>Created (defaults to current date)</li>
-</ul>
+####User Model Schema
 
-My Events Data:
-<ul>
-<li>Event_id</li>
-<li>Attending</li>
-<li>Following</li>
-</ul>
+Key|Value Type|Description|Example|
+----------|-----|-----------|-------|
+`firstName`|String|*captured by Google OAuth API*
+`lastName`|String|*captured by Google OAuth API*
+`email`|String|spots embedded into user
+`myEvents`|[myEventSchema]|*added by user*|see "My Event Schema"
+`googleId`|String|*captured by Google OAuth API*
+`profileImageUrl`|String|*captured by Google OAuth API*
+`created`|String|*captured when New User is created*
 
-####<u>Events</u>
-Event Data:
-<ul>
-<li>Artists [Artist Data]</li>
-<li>Date</li>
-<li>Venue {Venue Data}</li>
-<li>Ticket Url</li>
-</ul>
+#####My Event Schema
 
-Venue Data:
-<ul>
-<li>Name</li>
-<li>Address</li>
-<li>City</li>
-<li>State</li>
-<li>Zipcode</li>
-<li>Venue Url</li>
-</ul>
-  
- 
-Artist Data:
-<ul>
-<li>Name</li>
-</ul>
+Key|Value Type|Description|Example|
+----------|-----|-----------|-------|
+`event_id`|reference|*added by user*|reference ID from "Event Schema"
+`attending`|boolean|*added by user*
+`following`|boolean|*added by user*
+
+####Event Model Schema
+
+Key|Value Type|Description|Example|
+----------|-----|-----------|-------|
+`artists`|[artistSchema]|*captured by Jambase API*|see "Artist Schema"
+`date`|String|*captured by Jambase API*
+`venue`|venueSchema|*captured by Jambase API*|see "Venue Schema"
+`ticketUrl`|String|*captured by Jambase API*
+`jamBaseId`|String|*captured by Jambase API*
+
+#####Venue Schema
+
+Key|Value Type|Description|Example|
+----------|-----|-----------|-------|
+`name`|String|*captured by Jambase API*
+`address`|String|*captured by Jambase API*
+`city`|String|*captured by Jambase API*
+`state`|String|*captured by Jambase API*
+`zipcode`|String|*captured by Jambase API*
+`venueUrl`|String|*captured by Jambase API*
+
+#####Artist Schema
+
+Key|Value Type|Description|Example|
+----------|-----|-----------|-------|
+`name`|String|*captured by Jambase API*
+
 
 ## RESTful API
 Conshareto's API provides simple methods for creating events in a hosted online database, for creating user documents based on authenticated user logins, and for creating and uncreating "attending" and "following" relationships between users and events. 
@@ -132,6 +135,22 @@ The application allows a user to delete events from their own view using "unAtte
 The following route is used for Google login/authentication of a user, but also provides POST funcationality to create a new user in the application's hosted database if the user is not already in the database:
 
 <ul><li>app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));</li></ul>
+
+####Event Controller 
+
+Method|Route|Description|Required Fields|Optional Fields|
+-------------|------|-----------|-------|---|
+`attendEvent`|`/attendevent`|a user can add an event to their myevents list as "attending"|`event object` or `jamBaseId`
+`followEvent`|`/followevent`|a user can add an event to their myevents list as "following"|`event object` or `jamBaseId`
+`unAttendEvent`|`/unattendevent`|a user change an event in their myevents list to "not attending"|`event Id` 
+`unFollowEvent`|`/unfollowevent`|a user change an event in their myevents list to "not following"|`event Id` 
+
+####User Controller 
+
+Method|Route|Description|Required Fields|Optional Fields|
+-------------|------|-----------|-------|---|
+`myAttendEvents`|`/myattendevents`|a user can access a list of events they are attending|`user` 
+`myFollowEvents`|`/myfollowevents`|a user can access a list of events they are following|`user` 
 
 
 ## User Stories, Sprint, Icebox
