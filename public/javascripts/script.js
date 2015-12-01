@@ -8,6 +8,17 @@ $(document).ready(function() {
     }
   });
 
+  function music() {
+    $('#special').off();
+    $('#special').on('click', function(el) {
+      $(this).append('<audio id="music" src="http://www.ygnacio69.com/media/17_Birthday.mp3" autoplay> </audio>');
+      $('#stop-happy').on('click', function(el) {
+        $('#music').remove();
+      });
+    });
+  };
+  music();
+
   var eventTemplate = _.template($("#event-template").html());
   var attendEventTemplate = _.template($("#attend-event-template").html());
   var followEventTemplate = _.template($("#follow-event-template").html());
@@ -70,6 +81,7 @@ $(document).ready(function() {
             $('#numAttending').html('( '+ attendCounter(data) + ' )');
         });
       });
+      music();
     });
   });
   $('#myAttendButton').off();
@@ -121,6 +133,7 @@ $(document).ready(function() {
             $('#numAttending').html('( '+ attendCounter(data) + ' )');
         });
       });
+      music();
     });
   });
   $('#myFollowButton').off();
@@ -174,36 +187,37 @@ $(document).ready(function() {
             $('#numFollowing').html('( '+ followCounter(data) + ' )');
         });
       });
+      music();
     });
   });
 
 
 
-function attendCounter(myEvents) {
-  var counter = 0;
-  for (var i = 0; i < myEvents.length; i++) {
-    if (myEvents[i].attending === true) {
-      counter++;
+  function attendCounter(myEvents) {
+    var counter = 0;
+    for (var i = 0; i < myEvents.length; i++) {
+      if (myEvents[i].attending === true) {
+        counter++;
+      }
     }
-  }
-  if (counter !== 0){
-    console.log('events attending is ' + counter);
-    return counter;
-  }
- };
+    if (counter !== 0){
+      console.log('events attending is ' + counter);
+      return counter;
+    }
+   };
 
- function followCounter(myEvents) {
-  var counter = 0;
-  for (var i = 0; i < myEvents.length; i++) {
-    if (myEvents[i].following === true) {
-      counter++;
+   function followCounter(myEvents) {
+    var counter = 0;
+    for (var i = 0; i < myEvents.length; i++) {
+      if (myEvents[i].following === true) {
+        counter++;
+      }
     }
-  }
-  if (counter !== 0){
-    console.log('events attending is ' + counter);
-    return counter;
-  }
- };
+    if (counter !== 0){
+      console.log('events attending is ' + counter);
+      return counter;
+    }
+   };
 });
 
 
